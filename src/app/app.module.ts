@@ -10,24 +10,26 @@ import { AppComponent } from './app.component';
 
 import { LoginModule } from '../app/login/login.module';
 import { CustomerModule } from './customer/customer.module';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // default route
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     LoginModule,
     CustomerModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
