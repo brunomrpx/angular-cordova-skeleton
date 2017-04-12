@@ -9,8 +9,4 @@ declare var componentHandler: any;
 })
 export class SidebarComponent {
   constructor() { }
-
-  ngAfterViewInit() {
-    componentHandler.upgradeAllRegistered();
-  }
 }
