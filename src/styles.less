@@ -1,3 +1,22 @@
 @import '../node_modules/bootstrap/less/bootstrap.less';
 
-.content { padding-top: 50px; }
+//== Global configuration
+//
+//##
+body, html { height: 100%; }
+
+//== Mixins
+//
+//##
+
+//** Generate Spacing Classes
+@sides: left, right, top, bottom;
+
+.generate-spacing-classes(@i: length(@sides)) when (@i > 0) {
+  @side: extract(@sides, @i);
+  .padding-@{side} { padding-@{side}: 10px; };
+  .margin-@{side} { margin-@{side}: 10px };
+  .generate-spacing-classes(@i - 1);
+}
+
+.generate-spacing-classes();

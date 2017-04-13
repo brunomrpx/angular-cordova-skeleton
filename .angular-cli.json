@@ -20,10 +20,12 @@
       "prefix": "app",
       "styles": [
         "styles.less",
-        "../node_modules/font-awesome/css/font-awesome.min.css"
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/slideout/index.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/slideout/dist/slideout.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

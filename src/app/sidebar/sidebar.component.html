@@ -1,13 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button class="btn btn-link btn-nav pull-left btn-toggle hamburger">
+<div #pageWrapper class="page-wrapper">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <header>
+      <button class="btn btn-link btn-nav btn-hamburger pull-left" (click)="toggleMenu()">
         <i class="fa fa-bars"></i>
       </button>
-      <a href="#" class="navbar-brand">
-        App
-      </a>
-    </div>
-  </div>
+      <a href="#" class="navbar-brand">App</a>
+    </header>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+<nav #menu class="menu">
+  <h2 class="text-center">Welcome!</h2>
 </nav>
-<router-outlet></router-outlet>
