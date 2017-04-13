@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
-declare var componentHandler: any;
+declare var Slideout: any;
 
 @Component({
   selector: 'app-sidebar',
@@ -8,5 +8,20 @@ declare var componentHandler: any;
   styleUrls: ['./sidebar.component.less']
 })
 export class SidebarComponent {
-  constructor() { }
+  @ViewChild('pageWrapper') pageWrapper: ElementRef;
+  @ViewChild('menu') menu: ElementRef;
+
+  private slideoutInstance;
+
+  ngAfterViewInit() {
+    this.slideoutInstance = new Slideout({
+      panel: this.pageWrapper.nativeElement,
+      menu: this.menu.nativeElement,
+      padding: 256
+    });
+  }
+
+  private toggleMenu() {
+    this.slideoutInstance.toggle();
+  }
 }
