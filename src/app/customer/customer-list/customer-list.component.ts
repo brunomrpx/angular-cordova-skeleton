@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { SidebarService } from '../../shared/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent {
 
-  constructor() { }
+  constructor(private sidebarService: SidebarService) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.sidebarService.title = 'Customer List';
   }
-
 }
