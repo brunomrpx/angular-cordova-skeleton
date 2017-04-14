@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 import { LoginModule } from '../app/login/login.module';
 import { CustomerModule } from './customer/customer.module';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // default route
@@ -18,14 +18,14 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    SharedModule,
     LoginModule,
     CustomerModule
   ],
