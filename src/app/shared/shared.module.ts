@@ -4,17 +4,25 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarService } from './sidebar/sidebar.service';
+import { HeaderComponent } from './header/header.component';
+import { HeaderService } from './header/header.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule
   ],
+  exports: [
+    SidebarComponent,
+    HeaderComponent
+  ],
   declarations: [
-    SidebarComponent
+    SidebarComponent,
+    HeaderComponent
   ],
   providers: [
-    SidebarService
+    SidebarService,
+    HeaderService
   ]
 })
 export class SharedModule { }

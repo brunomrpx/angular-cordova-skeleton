@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <header>
+    <button *ngIf="headerService.useSidebar && !showBackButton" class="btn btn-link btn-nav btn-hamburger pull-left" (click)="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </button>
+    <button *ngIf="showBackButton" class="btn btn-link btn-nav btn-hamburger pull-left" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <span class="navbar-brand">{{ title }}</span>
+    <ng-content selector=".right-buttons"></ng-content>
+  </header>
+</nav>

@@ -14,7 +14,7 @@ body, html { height: 100%; }
 
 .generate-spacing-classes(@i: length(@sides)) when (@i > 0) {
   @side: extract(@sides, @i);
-  .padding-@{side} { padding-@{side}: 10px; };
+  .padding-@{side} { padding-@{side}: 10px };
   .margin-@{side} { margin-@{side}: 10px };
   .generate-spacing-classes(@i - 1);
 }
