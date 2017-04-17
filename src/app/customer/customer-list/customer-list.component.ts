@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-import { SidebarService } from '../../shared/sidebar/sidebar.service';
+import { SidebarService, Menu } from '../../shared/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -8,9 +9,28 @@ import { SidebarService } from '../../shared/sidebar/sidebar.service';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent {
-  constructor(private sidebarService: SidebarService) {}
+  private filterOpened: boolean = false;
+  private filterIcon = {
+    opened: 'fa-chevron-left',
+    closed: 'fa-filter'
+  };
+
+  constructor(private sidebarService: SidebarService) { }
+
+  ngOnInit() {
+    this.sidebarService.menuRight.subscribe(menu => {
+      let slideout = menu.slideoutInstance;
+
+      if (!slideout) {
+        return;
+      }
+
+      slideout.on('open', () => this.filterOpened = true);
+      slideout.on('close', () => this.filterOpened = false);
+    });
+  }
 
   private toggleFilter() {
-    this.sidebarService.menuRight.slideoutInstance.toggle();
+    this.sidebarService.menuRight.value.slideoutInstance.toggle();
   }
 }

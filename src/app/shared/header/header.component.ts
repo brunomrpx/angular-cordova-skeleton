@@ -29,7 +29,7 @@ export class HeaderComponent {
       this.showBackButton = !(Boolean(data.root));
 
       if (this.headerService.useSidebar && this.showBackButton) {
-        this.sidebarService.menuLeft.slideoutInstance.destroy();
+        this.sidebarService.menuLeft.value.slideoutInstance.destroy();
       }
     });
   }
@@ -39,7 +39,7 @@ export class HeaderComponent {
   }
 
   private toggleMenu() {
-    this.sidebarService.menuLeft.slideoutInstance.toggle();
+    this.sidebarService.menuLeft.value.slideoutInstance.toggle();
   }
 
   ngOnDestroy() {
