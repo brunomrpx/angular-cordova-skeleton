@@ -12,14 +12,14 @@ export class CustomerListComponent {
   private filterOpened: boolean = false;
   private filterIcon = {
     opened: 'fa-chevron-left',
-    closed: 'fa-filter'
+    closed: 'fa-search'
   };
 
   constructor(private sidebarService: SidebarService) { }
 
   ngOnInit() {
     this.sidebarService.menuRight.subscribe(menu => {
-      let slideout = menu.slideoutInstance;
+      const slideout = menu.slideoutInstance;
 
       if (!slideout) {
         return;
