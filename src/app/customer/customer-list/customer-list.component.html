@@ -1,50 +1,25 @@
-<app-header title="Customer List">
-  <div class="right-buttons">
-    <button class="btn btn-link btn-nav btn-hamburger pull-right" (click)="toggleFilter()">
-      <i class="fa {{ filterOpened ? filterIcon.opened : filterIcon.closed }}"></i>
-    </button>
-  </div>
-</app-header>
 <div class="container-fluid padding-top">
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default padding" routerLink="/customer/detail">
-        <div class="panel-heading">Client 1</div>
-        <div class="panel-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores voluptates natus ipsa ullam excepturi aut, impedit reiciendis quia praesentium iusto, eaque quisquam corporis dolore. Distinctio velit aspernatur iste quibusdam sequi.
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">Customers</div>
+            <div class="col-xs-6 text-right">Last Update</div>
+          </div>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-      </div>
-      <div class="panel panel-default padding">
-        <div class="panel-heading">Client 1</div>
-        <div class="panel-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores voluptates natus ipsa ullam excepturi aut, impedit reiciendis quia praesentium iusto, eaque quisquam corporis dolore. Distinctio velit aspernatur iste quibusdam sequi.
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-      </div>
-      <div class="panel panel-default padding">
-        <div class="panel-heading">Client 1</div>
-        <div class="panel-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores voluptates natus ipsa ullam excepturi aut, impedit reiciendis quia praesentium iusto, eaque quisquam corporis dolore. Distinctio velit aspernatur iste quibusdam sequi.
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-xs-6">Lorem Ipsum</div>
+              <div class="col-xs-6 text-right">25/01/2015</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                Lorem ipsum dolor / sit amet
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
