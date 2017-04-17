@@ -18,7 +18,7 @@ export class SidebarComponent {
   constructor(private sidebarService: SidebarService) {}
 
   private handleActivateMenuLeft() {
-    let slideout = new Slideout({
+    const slideout = new Slideout({
       panel: this.pageWrapper.nativeElement,
       menu: this.menuLeft.nativeElement,
       padding: 256
@@ -32,7 +32,7 @@ export class SidebarComponent {
   }
 
   private handleActivateMenuRight() {
-    let slideout = new Slideout({
+    const slideout = new Slideout({
       panel: this.pageWrapper.nativeElement,
       menu: this.menuRight.nativeElement,
       padding: 256,
