@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarService } from './sidebar/sidebar.service';
 import { HeaderComponent } from './header/header.component';
 import { HeaderService } from './header/header.service';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { HeaderService } from './header/header.service';
   ],
   declarations: [
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    MenuComponent
   ],
   providers: [
     SidebarService,
