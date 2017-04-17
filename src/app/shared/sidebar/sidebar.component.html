@@ -1,9 +1,10 @@
+<router-outlet name="header" (activate)="handleActivateHeader($event)"></router-outlet>
 <div #pageWrapper class="page-wrapper">
   <router-outlet></router-outlet>
 </div>
-<nav #menuLeft class="menu">
+<nav [hidden]="true" #menuLeft class="menu">
   <router-outlet name="menu-left" (activate)="handleActivateMenuLeft()" (deactivate)="handleDeactivateMenuLeft()"></router-outlet>
 </nav>
-<nav #menuRight class="menu right">
+<nav [hidden]="true" #menuRight class="menu right">
   <router-outlet name="menu-right" (activate)="handleActivateMenuRight()" (deactivate)="handleDeactivateMenuRight()"></router-outlet>
 </nav>

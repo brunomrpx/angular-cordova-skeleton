@@ -7,6 +7,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { CustomerFilterComponent } from './customer-filter/customer-filter.component';
 import { MenuComponent } from '../shared/menu/menu.component';
+import { HeaderComponent } from '../shared/header/header.component';
+import { CustomerListHeaderComponent } from './customer-list/customer-list-header/customer-list-header.component';
 
 const routes: Routes = [
   {
@@ -16,16 +18,18 @@ const routes: Routes = [
         path: 'list',
         component: SidebarComponent,
         children: [
-          { path: '', component: CustomerListComponent, data: { root: true } },
+          { path: '', component: CustomerListComponent },
           { path: '', component: MenuComponent, outlet: 'menu-left' },
-          { path: '', component: CustomerFilterComponent, outlet: 'menu-right' }
+          { path: '', component: CustomerFilterComponent, outlet: 'menu-right' },
+          { path: '', component: CustomerListHeaderComponent, outlet: 'header', data: { root: true } }
         ]
       },
       {
         path: 'detail',
         component: SidebarComponent,
         children: [
-          { path: '', component: CustomerDetailComponent }
+          { path: '', component: CustomerDetailComponent },
+          { path: '', component: HeaderComponent, outlet: 'header', data: { title: 'Customer Detail' } }
         ]
       }
     ]

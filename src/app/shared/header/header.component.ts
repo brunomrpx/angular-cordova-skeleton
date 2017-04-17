@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs/Rx';
 import { ViewEncapsulation } from '@angular/core';
 
 import { HeaderService } from '../header/header.service';
@@ -14,10 +14,11 @@ import { SidebarService } from '../sidebar/sidebar.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {
+  @ViewChild('navbar') navbar: ElementRef;
   @Input() title: string;
 
   private showBackButton: boolean = false;
-  private backButtonSubscription: Subscription;
+  private dataSubscription: Subscription;
 
   constructor(
     private headerService: HeaderService,
@@ -25,11 +26,11 @@ export class HeaderComponent {
     private platformLocation: PlatformLocation,
     private sidebarService: SidebarService
   ) {
-    this.backButtonSubscription = this.route.data.subscribe(data => {
+    this.dataSubscription = this.route.data.subscribe(data => {
       this.showBackButton = !(Boolean(data.root));
 
-      if (this.headerService.useSidebar && this.showBackButton) {
-        this.sidebarService.menuLeft.value.slideoutInstance.destroy();
+      if (data.title) {
+        this.title = data.title;
       }
     });
   }
@@ -43,6 +44,6 @@ export class HeaderComponent {
   }
 
   ngOnDestroy() {
-    this.backButtonSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
   }
 }
