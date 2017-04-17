@@ -31,6 +31,6 @@ export class CustomerListComponent {
   }
 
   private toggleFilter() {
-    this.sidebarService.menuRight.value.slideoutInstance.toggle();
+    this.sidebarService.toggleMenuRight();
   }
 }

@@ -39,7 +39,7 @@ export class HeaderComponent {
   }
 
   private toggleMenu() {
-    this.sidebarService.menuLeft.value.slideoutInstance.toggle();
+    this.sidebarService.toggleMenuLeft();
   }
 
   ngOnDestroy() {
