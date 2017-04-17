@@ -1,27 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-interface Menu {
-  slideoutInstance: any
+export interface Menu {
+  slideoutInstance?: any
 }
 
 @Injectable()
 export class SidebarService {
-  private _menuLeft: Menu;
-  private _menuRight: Menu;
-
-  get menuLeft() {
-    return this._menuLeft;
-  }
-
-  set menuLeft(menuLeft: Menu) {
-    this._menuLeft = menuLeft;
-  }
-
-  get menuRight() {
-    return this._menuRight;
-  }
-
-  set menuRight(menuRight: Menu) {
-    this._menuRight = menuRight;
-  }
+  public menuLeft: BehaviorSubject<Menu> = new BehaviorSubject<Menu>({});
+  public menuRight: BehaviorSubject<Menu> = new BehaviorSubject<Menu>({});
 }

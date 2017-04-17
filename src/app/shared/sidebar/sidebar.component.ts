@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { SidebarService } from './sidebar.service';
+import { SidebarService, Menu } from './sidebar.service';
 
 declare var Slideout: any;
 
@@ -24,11 +24,11 @@ export class SidebarComponent {
       padding: 256
     });
 
-    this.sidebarService.menuLeft = { slideoutInstance: slideout };
+    this.sidebarService.menuLeft.next({ slideoutInstance: slideout });
   }
 
   private handleDeactivateMenuLeft() {
-    this.sidebarService.menuLeft.slideoutInstance.destroy();
+    this.sidebarService.menuLeft.value.slideoutInstance.destroy();
   }
 
   private handleActivateMenuRight() {
@@ -39,10 +39,10 @@ export class SidebarComponent {
       side: 'right'
     });
 
-    this.sidebarService.menuRight = { slideoutInstance: slideout };
+    this.sidebarService.menuRight.next({ slideoutInstance: slideout });
   }
 
   private handleDeactivateMenuRight() {
-    this.sidebarService.menuRight.slideoutInstance.destroy();
+    this.sidebarService.menuRight.value.slideoutInstance.destroy();
   }
 }
