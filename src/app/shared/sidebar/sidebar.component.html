@@ -1,6 +1,9 @@
 <div #pageWrapper class="page-wrapper">
   <router-outlet></router-outlet>
 </div>
-<nav #menu class="menu">
-  <h2 class="text-center">Welcome!</h2>
+<nav #menuLeft class="menu">
+  <router-outlet name="menu-left" (activate)="handleActivateMenuLeft()" (deactivate)="handleDeactivateMenuLeft()"></router-outlet>
+</nav>
+<nav #menuRight class="menu right">
+  <router-outlet name="menu-right" (activate)="handleActivateMenuRight()" (deactivate)="handleDeactivateMenuRight()"></router-outlet>
 </nav>
