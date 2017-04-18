@@ -2,12 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SidebarService } from '../sidebar/sidebar.service';
-
-export interface MenuItem {
-  label: string;
-  icon: string;
-  action: string | Function;
-}
+import { MenuItem } from './menu.service';
+import { MENU_ITEMS } from '../../app.constant';
 
 @Component({
   selector: 'app-menu',
@@ -15,9 +11,7 @@ export interface MenuItem {
   styleUrls: ['./menu.component.less']
 })
 export class MenuComponent {
-  private menuItems: MenuItem[] = [
-    { label: 'Lista de ECs', icon: 'fa-list', action: '/customer/list' }
-  ];
+  private menuItems: MenuItem[] = MENU_ITEMS;
 
   constructor(private router: Router, private sidebarSerice: SidebarService) {}
 
