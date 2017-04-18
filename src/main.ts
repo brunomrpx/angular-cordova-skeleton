@@ -5,14 +5,23 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
-
 declare const window;
 
-window.document.addEventListener('deviceready', () => {
-  window._keycloak = window.Keycloak('assets/keycloak/keycloak.json');
+let keycloakJSONFile = 'assets/keycloak/';
+
+if (environment.production) {
+  enableProdMode();
+  keycloakJSONFile += 'keycloak.prod.json';
+} else {
+  keycloakJSONFile += 'keycloak.dev.json';
+}
+
+function isCordova() {
+  return !(/^http/.test(window.location.protocol));
+}
+
+function initKeycloak(JSONFile) {
+  window._keycloak = window.Keycloak(JSONFile);
 
   window._keycloak.init({
     onLoad: 'login-required'
@@ -28,5 +37,11 @@ window.document.addEventListener('deviceready', () => {
   }).error(error => {
     window.location.reload();
   });
-}, false);
+}
+
+if (isCordova()) {
+  window.document.addEventListener('deviceready', () => initKeycloak(keycloakJSONFile), false);
+} else {
+  initKeycloak(keycloakJSONFile);
+}
 
