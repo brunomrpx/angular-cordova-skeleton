@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { SidebarService, Menu } from './sidebar.service';
 import { HeaderComponent } from '../header/header.component';
+import { SWIPPEABLE_WIDTH } from './sidebar.constant';
 
 declare var Slideout: any;
 
@@ -17,6 +18,32 @@ export class SidebarComponent {
   @ViewChild('menuRight') menuRight: ElementRef;
 
   constructor(private sidebarService: SidebarService) {}
+
+  private handlePageWraperTouchStart(event) {
+    const menuLeftSlideout = this.sidebarService.menuLeft.value.slideoutInstance;
+    const menuRightSlideout = this.sidebarService.menuRight.value.slideoutInstance;
+    const clientX = event.touches[0].clientX;
+
+    if (menuLeftSlideout) {
+      if (!menuLeftSlideout.isOpen()) {
+        menuLeftSlideout.disableTouch();
+
+        if (clientX <= SWIPPEABLE_WIDTH) {
+          menuLeftSlideout.enableTouch();
+        }
+      }
+    }
+
+    if (menuRightSlideout) {
+      if (!menuRightSlideout.isOpen()) {
+        menuRightSlideout.disableTouch();
+
+        if (clientX >= (window.screen.width - SWIPPEABLE_WIDTH)) {
+          menuRightSlideout.enableTouch();
+        }
+      }
+    }
+  }
 
   private handleActivateHeader(component) {
     let headerComponent: HeaderComponent;
