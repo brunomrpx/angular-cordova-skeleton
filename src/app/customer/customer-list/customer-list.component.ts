@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-import { SidebarService, Menu } from '../../shared/sidebar/sidebar.service';
+import { SidebarService } from '../../shared/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-customer-list',

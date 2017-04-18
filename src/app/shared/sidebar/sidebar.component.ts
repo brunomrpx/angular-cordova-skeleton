@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
-import { SidebarService, Menu } from './sidebar.service';
+import { SidebarService } from './sidebar.service';
 import { HeaderComponent } from '../header/header.component';
 import { SWIPPEABLE_WIDTH } from './sidebar.constant';
 
