@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-export interface Menu {
+export interface SidebarMenu {
   slideoutInstance?: any;
 }
 
 @Injectable()
 export class SidebarService {
-  public menuLeft: BehaviorSubject<Menu> = new BehaviorSubject<Menu>({});
-  public menuRight: BehaviorSubject<Menu> = new BehaviorSubject<Menu>({});
+  public menuLeft: BehaviorSubject<SidebarMenu> = new BehaviorSubject<SidebarMenu>({});
+  public menuRight: BehaviorSubject<SidebarMenu> = new BehaviorSubject<SidebarMenu>({});
 
   constructor() {
     this.menuLeft.subscribe(menu => this.bindMenuEvents(menu.slideoutInstance));
