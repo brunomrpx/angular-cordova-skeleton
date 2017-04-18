@@ -6,7 +6,7 @@
     <button *ngIf="showBackButton" class="btn btn-link btn-nav btn-hamburger pull-left" (click)="goBack()">
       <i class="fa fa-chevron-left"></i>
     </button>
-    <img *ngIf="!showBackButton" class="logo" src="/assets/images/logo.svg" width="115px">
+    <img *ngIf="!showBackButton" class="logo" src="assets/images/logo.svg" width="115px">
     <span *ngIf="showBackButton" class="navbar-brand">{{ title }}</span>
     <ng-content selector=".right-buttons"></ng-content>
   </header>
