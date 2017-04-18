@@ -4,9 +4,11 @@
     <div class="menu-header__user-role">Usuário</div>
   </div>
   <ul class="menu-list list-unstyled">
-    <li class="menu-list__item">
-      <i class="fa fa-list" aria-hidden="true"></i>
-      Lista de ECs
+    <li class="menu-list__item" *ngFor="let menuItem of menuItems">
+      <a class="deco-none" (click)="goToAction(menuItem)">
+        <i class="fa {{ menuItem.icon }}"></i>
+        {{ menuItem.label }}
+      </a>
     </li>
     <li class="menu-list__item" routerLink="/login">
       <i class="fa fa-sign-out" aria-hidden="true"></i>
