@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
 import { HeaderService } from './shared/header/header.service';
+import { KeycloakService } from './shared/keycloak.service';
+
+declare const window;
 
 @Component({
   selector: 'app-root',
@@ -8,7 +11,8 @@ import { HeaderService } from './shared/header/header.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private headerService: HeaderService) {
+  constructor(private headerService: HeaderService, private keycloakService: KeycloakService) {
     this.headerService.useSidebar = true;
+    this.keycloakService.keycloak = window._keycloak;
   }
 }
