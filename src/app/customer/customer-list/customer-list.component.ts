@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/Rx';
 
 import { SidebarService, Menu } from '../../shared/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+  styleUrls: ['./customer-list.component.less']
 })
 export class CustomerListComponent {
   private filterOpened: boolean = false;
@@ -14,8 +14,19 @@ export class CustomerListComponent {
     opened: 'fa-chevron-left',
     closed: 'fa-search'
   };
+  private customerList = [
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
+  ]
 
-  constructor(private sidebarService: SidebarService) { }
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit() {
     this.sidebarService.menuRight.subscribe(menu => {

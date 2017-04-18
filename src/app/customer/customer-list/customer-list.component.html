@@ -4,28 +4,28 @@
       <div class="panel panel-default padding" routerLink="/customer/detail">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-8">
               <strong>Lista de ECs</strong>
             </div>
-            <div class="col-xs-6 text-right">
+            <div class="col-xs-4 text-right">
               <strong>Última Visita</strong>
             </div>
           </div>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">
+          <li class="list-group-item customer" *ngFor="let customer of customerList">
             <div class="row">
               <div class="col-xs-6">
-                <strong>Nome do Estabelecimento</strong>
+                <strong>{{ customer.name }}</strong>
               </div>
-              <div class="col-xs-6 text-right">
-                25/01/2015
+              <div class="col-xs-6 text-right customer__last-visit">
+                {{ customer.lastUpdate }}
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-12">
-                Porto Alegre / Tristeza
+              <div class="col-xs-12 customer__address">
+                {{ customer.address }}
               </div>
             </div>
           </li>

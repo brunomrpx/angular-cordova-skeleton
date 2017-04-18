@@ -1,3 +1,4 @@
+import 'es6-shim';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
