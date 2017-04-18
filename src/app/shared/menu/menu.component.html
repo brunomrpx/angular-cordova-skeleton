@@ -10,7 +10,7 @@
         {{ menuItem.label }}
       </a>
     </li>
-    <li class="menu-list__item" routerLink="/login">
+    <li class="menu-list__item" (click)="logout()">
       <i class="fa fa-sign-out" aria-hidden="true"></i>
       Sair
     </li>
