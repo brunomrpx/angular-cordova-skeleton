@@ -10,24 +10,22 @@ if (environment.production) {
 }
 
 declare const window;
-declare const Keycloak;
-declare const cordova;
 
 window.document.addEventListener('deviceready', () => {
-  window._keycloak = Keycloak('assets/keycloak/keycloak.json');
+  window._keycloak = window.Keycloak('assets/keycloak/keycloak.json');
 
   window._keycloak.init({
     onLoad: 'login-required'
-  }).success((authenticated) => {
+  }).success(authenticated => {
     if (authenticated) {
-      window._keycloak.loadUserProfile().success(function (profile) {
+      window._keycloak.loadUserProfile().success(profile => {
         // bootstrapping angular application
         platformBrowserDynamic().bootstrapModule(AppModule);
       });
     } else {
       window.location.reload();
     }
-  }).error((error) => {
+  }).error(error => {
     window.location.reload();
   });
 }, false);
