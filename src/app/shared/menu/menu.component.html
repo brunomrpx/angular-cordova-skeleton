@@ -1,7 +1,7 @@
 <div class="menu-wrapper">
   <div class="menu-header">
-    <div class="menu-header__username text-info">Demo</div>
-    <div class="menu-header__user-role">Usuário</div>
+    <div class="menu-header__username text-info">{{ userData.name }}</div>
+    <!--<div class="menu-header__user-role">Usuário</div>-->
   </div>
   <ul class="menu-list list-unstyled">
     <li class="menu-list__item" *ngFor="let menuItem of menuItems">

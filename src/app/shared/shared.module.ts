@@ -7,6 +7,7 @@ import { SidebarService } from './sidebar/sidebar.service';
 import { HeaderComponent } from './header/header.component';
 import { HeaderService } from './header/header.service';
 import { MenuComponent } from './menu/menu.component';
+import { HttpService } from './http/http.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { MenuComponent } from './menu/menu.component';
   ],
   providers: [
     SidebarService,
-    HeaderService
+    HeaderService,
+    HttpService
   ]
 })
 export class SharedModule { }

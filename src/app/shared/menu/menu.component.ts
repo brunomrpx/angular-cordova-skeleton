@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { MenuItem } from './menu.service';
 import { MENU_ITEMS } from '../../app.constant';
-import { KeycloakService } from '../keycloak.service';
+import { AuthenticationService } from '../../authentication/authentication.service';
+import { SessionService } from '../../authentication/session.service';
 
 @Component({
   selector: 'app-menu',
@@ -13,12 +14,24 @@ import { KeycloakService } from '../keycloak.service';
 })
 export class MenuComponent {
   private menuItems: MenuItem[] = MENU_ITEMS;
+  private userData: any = {};
 
   constructor(
     private router: Router,
     private sidebarSerice: SidebarService,
-    private keycloakService: KeycloakService
+    private authenticationService: AuthenticationService,
+    private sessionService: SessionService
   ) {}
+
+  private ngOnInit() {
+    this.sessionService.getSession().then(session => {
+      if (!session) {
+        return;
+      }
+
+      this.userData = session.data;
+    });
+  }
 
   private goToAction(menuItem: MenuItem) {
     console.log('go to action: ', menuItem);
@@ -33,6 +46,6 @@ export class MenuComponent {
   }
 
   private logout() {
-    this.keycloakService.keycloak.logout();
+    this.authenticationService.logout();
   }
 }

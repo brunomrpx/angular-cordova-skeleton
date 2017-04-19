@@ -16,16 +16,16 @@
           <li class="list-group-item customer" *ngFor="let customer of customerList">
             <div class="row">
               <div class="col-xs-6">
-                <strong>{{ customer.name }}</strong>
+                <strong>{{ customer.nome }}</strong>
               </div>
               <div class="col-xs-6 text-right customer__last-visit">
-                {{ customer.lastUpdate }}
+                {{ customer.dataUltimaVisita|date:'dd/MM/yyyy' }}
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
               </div>
             </div>
             <div class="row">
               <div class="col-xs-12 customer__address">
-                {{ customer.address }}
+                {{ customer.cidade }} / {{ customer.bairro }}
               </div>
             </div>
           </li>

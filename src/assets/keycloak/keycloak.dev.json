@@ -3,5 +3,8 @@
   "auth-server-url": "http://192.168.0.97:3500/auth",
   "ssl-required": "external",
   "resource": "mobile-app-browser",
-  "public-client": true
+  "credentials": {
+    "secret": "a1b788b3-796a-48a9-9368-23ade9383a21"
+  },
+  "policy-enforcer": {}
 }
