@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { HeaderService } from './shared/header/header.service';
-import { KeycloakService } from './shared/keycloak.service';
+import { KeycloakService } from './authentication/keycloak.service';
 
 declare const window;
 

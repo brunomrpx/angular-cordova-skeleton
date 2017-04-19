@@ -8,12 +8,12 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
-import { LoginModule } from '../app/login/login.module';
+import { AuthenticationModule } from '../app/authentication/authentication.module';
 import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // default route
+  { path: '', redirectTo: 'customer/list', pathMatch: 'full' }, // default route
 ];
 
 @NgModule({
@@ -26,7 +26,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
     SharedModule,
-    LoginModule,
+    AuthenticationModule,
     CustomerModule
   ],
   providers: [],
