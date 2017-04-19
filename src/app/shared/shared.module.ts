@@ -7,7 +7,6 @@ import { SidebarService } from './sidebar/sidebar.service';
 import { HeaderComponent } from './header/header.component';
 import { HeaderService } from './header/header.service';
 import { MenuComponent } from './menu/menu.component';
-import { KeycloakService } from './keycloak.service';
 
 @NgModule({
   imports: [
@@ -25,8 +24,7 @@ import { KeycloakService } from './keycloak.service';
   ],
   providers: [
     SidebarService,
-    HeaderService,
-    KeycloakService
+    HeaderService
   ]
 })
 export class SharedModule { }
