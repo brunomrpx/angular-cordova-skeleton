@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerFilterComponent } from './customer-filter/customer-filter.component';
 import { CustomerListHeaderComponent } from './customer-list/customer-list-header/customer-list-header.component';
+import { CustomerService } from './customer.service';
 
 @NgModule({
   imports: [
@@ -15,5 +16,6 @@ import { CustomerListHeaderComponent } from './customer-list/customer-list-heade
     SharedModule
   ],
   declarations: [CustomerListComponent, CustomerDetailComponent, CustomerFilterComponent, CustomerListHeaderComponent],
+  providers: [CustomerService]
 })
 export class CustomerModule { }

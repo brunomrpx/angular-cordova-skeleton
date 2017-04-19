@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
+import { HttpService } from '../../shared/http/http.service';
+import { CustomerService, Customer } from '../customer.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -14,19 +16,9 @@ export class CustomerListComponent {
     opened: 'fa-chevron-left',
     closed: 'fa-search'
   };
-  private customerList = [
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-    { name: 'Nome do Estabelecimento', lastUpdate: '25/01/2015', address: 'Porto Alegre / Tristeza' },
-  ]
+  private customerList: Customer[] = [];
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(private sidebarService: SidebarService, private customerService: CustomerService) {}
 
   ngOnInit() {
     this.sidebarService.menuRight.subscribe(menu => {
@@ -38,6 +30,10 @@ export class CustomerListComponent {
 
       slideout.on('open', () => this.filterOpened = true);
       slideout.on('close', () => this.filterOpened = false);
+    });
+
+    this.customerService.customers.subscribe(customers => {
+      this.customerList = customers;
     });
   }
 

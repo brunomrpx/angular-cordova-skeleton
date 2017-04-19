@@ -21,6 +21,8 @@ function isCordova() {
 }
 
 function initKeycloak(JSONFile) {
+  console.log('keycloak json file: ', JSONFile);
+
   window._keycloak = window.Keycloak(JSONFile);
 
   window._keycloak.init({
@@ -35,7 +37,7 @@ function initKeycloak(JSONFile) {
       window.location.reload();
     }
   }).error(error => {
-    window.location.reload();
+    console.error('keycloak init error: ', error);
   });
 }
 
