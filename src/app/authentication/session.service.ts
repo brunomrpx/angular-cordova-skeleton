@@ -4,7 +4,7 @@ import * as localForage from 'localforage';
 
 export interface Session {
   data: any;
-  createdAt: string;
+  createdAt: number;
   lastDataUpdate?: string;
 }
 
@@ -22,7 +22,7 @@ export class SessionService {
     return localForage.setItem(SESSION_ID, session);
   }
 
-  private clear(): Promise<Session> {
+  public clear(): Promise<Session> {
     return this.setSession(null);
   }
 }
