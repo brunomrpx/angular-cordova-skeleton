@@ -27,7 +27,7 @@ export class AppComponent {
     this.keycloakService.keycloak.loadUserInfo().success(userInfo => {
       // creating app session
       const session = {
-        createdAt: String(new Date()),
+        createdAt: +new Date(),
         data: userInfo
       };
 
