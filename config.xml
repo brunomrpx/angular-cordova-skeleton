@@ -31,6 +31,7 @@
   <preference name="StatusBarStyle" value="lightcontent"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <plugin name="cordova-plugin-statusbar" spec="~2.2.2"/>
   <plugin name="cordova-plugin-whitelist" spec="1"/>
   <plugin name="cordova-plugin-inappbrowser" spec="~1.7.0"/>
