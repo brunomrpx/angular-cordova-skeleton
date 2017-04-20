@@ -1,6 +1,14 @@
 <div class="container-fluid padding-top">
   <div class="row">
     <div class="col-xs-12">
+      <div class="selected-filters padding-bottom" *ngIf="filtrosSelecionados.length > 0">
+        <div class="label label-default"
+            *ngFor="let filtroSelecionado of filtrosSelecionados"
+            [class.label-success]="filtroSelecionado.status == selectFilterStatus.active"
+            [class.label-primary]="filtroSelecionado.status == selectFilterStatus.inactive">
+          {{ filtroSelecionado.mensagem }}
+        </div>
+      </div>
       <div class="panel panel-default padding" routerLink="/customer/detail">
         <div class="panel-heading">
           <div class="row">
