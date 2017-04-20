@@ -33,7 +33,7 @@ export class SynchronizationService {
       }
 
       const observable = this.httpService
-        .get(this.url)
+        .get(this.url, requestOptions)
         .map(this.handleDownloadResponse)
         .flatMap(responseJson => this.checkSynchronizedData(synchronizationId, responseJson));
 

@@ -19,6 +19,18 @@ export enum SelectFilterStatus {
   active
 }
 
+export interface FiltrosSelecionados {
+  mensagem: string;
+  status: SelectFilterStatus;
+}
+
+export const mensagens: { [key: string]: string } = {
+  utilizaApp: 'Utiliza App',
+  antecipacaoAutomatica: 'Antecipação automática',
+  limiteRecarga: 'Limite de recarga',
+  campanhaChurn: 'Campanha churn',
+};
+
 @Injectable()
 export class CustomerFilterService {
   public filters: BehaviorSubject<Filters> = new BehaviorSubject<Filters>({
@@ -30,6 +42,55 @@ export class CustomerFilterService {
     campanhaChurn: SelectFilterStatus.notApplied,
     quantidadeMaquinas: SelectFilterStatus.notApplied
   });
+
+  public getMensagensFiltrosSelecionados(filters: Filters) {
+    const filtrosSelecionados = [];
+    const quantidadeMaquinas = parseInt(String(filters.quantidadeMaquinas), 10);
+    let valor;
+
+    if (filters.pesquisaRapida !== '') {
+      filtrosSelecionados.push({
+        mensagem: filters.pesquisaRapida,
+        status: null
+      });
+    }
+
+    for (const prop in mensagens) {
+      valor = parseInt(String(filters[prop]), 10);
+
+      if (valor !== SelectFilterStatus.notApplied) {
+        filtrosSelecionados.push({
+          mensagem: mensagens[prop],
+          status: filters[prop]
+        });
+      }
+    }
+
+    if (quantidadeMaquinas !== SelectFilterStatus.notApplied) {
+      let mensagem = '6 máquinas ou mais';
+
+      if (quantidadeMaquinas < 6) {
+        mensagem = `${quantidadeMaquinas} máquina`;
+        if (quantidadeMaquinas > 1) {
+          mensagem += 's';
+        }
+      }
+
+      filtrosSelecionados.push({
+        mensagem: mensagem,
+        status: null
+      });
+    }
+
+    if (filters.grupoEconomico !== '') {
+      filtrosSelecionados.push({
+        mensagem: filters.grupoEconomico,
+        status: null
+      });
+    }
+
+    return filtrosSelecionados;
+  }
 
   public filterCustomers(customers: Customer[], filters: Filters) {
     const filtros = [

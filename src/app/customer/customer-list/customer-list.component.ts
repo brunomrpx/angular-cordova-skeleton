@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { HttpService } from '../../shared/http/http.service';
 import { CustomerService, Customer } from '../customer.service';
-import { CustomerFilterService, Filters, SelectFilterStatus } from '../customer-filter/customer-filter.service';
+import { CustomerFilterService, Filters, SelectFilterStatus, FiltrosSelecionados } from '../customer-filter/customer-filter.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -19,6 +19,8 @@ export class CustomerListComponent implements OnInit {
   };
   private customerList: Customer[] = [];
   private filteredCustomers: Customer[] = [];
+  private filtrosSelecionados: FiltrosSelecionados[] = [];
+  private selectFilterStatus = SelectFilterStatus;
 
   constructor(
     private sidebarService: SidebarService,
@@ -44,6 +46,7 @@ export class CustomerListComponent implements OnInit {
     });
 
     this.customerFilterService.filters.subscribe(filters => {
+      this.filtrosSelecionados = this.customerFilterService.getMensagensFiltrosSelecionados(filters);
       this.filteredCustomers = this.customerFilterService.filterCustomers(this.customerList, filters);
     });
   }
