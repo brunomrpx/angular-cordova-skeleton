@@ -44,6 +44,19 @@ export class SidebarComponent {
     }
   }
 
+  private handlePageWrapperTouch(event) {
+    const menuLeftSlideout = this.sidebarService.menuLeft.value.slideoutInstance;
+    const menuRightSlideout = this.sidebarService.menuRight.value.slideoutInstance;
+
+    if (menuLeftSlideout.isOpen()) {
+      menuLeftSlideout.toggle();
+    }
+
+    if (menuRightSlideout.isOpen()) {
+      menuRightSlideout.toggle();
+    }
+  }
+
   private handleActivateHeader(component) {
     let headerComponent: HeaderComponent;
     let navbarElement: any;

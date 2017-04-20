@@ -1,5 +1,5 @@
 <router-outlet name="header" (activate)="handleActivateHeader($event)"></router-outlet>
-<div #pageWrapper class="page-wrapper" (touchstart)="handlePageWraperTouchStart($event)">
+<div #pageWrapper class="page-wrapper" (touchstart)="handlePageWraperTouchStart($event)" (touchend)="handlePageWrapperTouch($event)">
   <router-outlet></router-outlet>
 </div>
 <nav [hidden]="true" #menuLeft class="menu">
