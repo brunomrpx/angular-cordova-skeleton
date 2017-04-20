@@ -24,7 +24,7 @@ export class MenuComponent {
   ) {}
 
   private ngOnInit() {
-    this.sessionService.getSession().then(session => {
+    this.sessionService.session.subscribe(session => {
       if (!session) {
         return;
       }
