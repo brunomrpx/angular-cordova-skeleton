@@ -1,1 +1,62 @@
-<h2 class="text-center">Customer Filter</h2>
+<div class="filters">
+  <nav class="navbar navbar-fixed-top filters__header">
+    <header>
+      <div class="navbar-brand">
+         <strong>Filtros</strong>
+      </div>
+    </header>
+  </nav>
+  <div class="container-fluid filters__content">
+    <div class="form-group has-feedback">
+      <input type="text" id="inputSuccess2" placeholder="Pesquisa Rápida"  class="form-control">
+      <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    </div>
+    <div class="form-group">
+      <label for="utiliza-app">Utiliza APP</label>
+      <select class="form-control" id="utiliza-app">
+        <option value="">Sim</option>
+        <option value="">Não</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="antecipacao-automatica">Antecipação automática</label>
+      <select class="form-control" id="antecipacao-automatica">
+        <option value="">N/A</option>
+        <option value="">Possui</option>
+        <option value="">Não possui</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="limite-recarga">Limite de recarga</label>
+      <select class="form-control" id="limite-recarga">
+        <option value="">N/A</option>
+        <option value="">Possui</option>
+        <option value="">Não possui</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="campanha-churn">Campanha churn</label>
+      <select class="form-control" id="campanha-churn">
+        <option value="">N/A</option>
+        <option value="">Sim</option>
+        <option value="">Não</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="campanha-churn">Quantidade de máquinas</label>
+      <select class="form-control" id="campanha-churn">
+        <option value="">N/A</option>
+        <option value="1">1 máquina</option>
+        <option value="2">2 máquina</option>
+        <option value="3">3 máquina</option>
+        <option value="4">4 máquina</option>
+        <option value="5">5 máquina</option>
+        <option value="6">6 máquinas ou mais</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="grupo-economico">Grupo Econômico</label>
+      <input type="text" id="grupo-economico" placeholder="Digite o termo da sua pesquisa" class="form-control">
+    </div>
+  </div>
+</div>
