@@ -8,44 +8,45 @@
   </nav>
   <div class="container-fluid filters__content">
     <div class="form-group has-feedback">
-      <input type="text" id="inputSuccess2" placeholder="Pesquisa Rápida"  class="form-control">
+      <input type="text" class="form-control" placeholder="Pesquisa Rápida" [formControl]="formGroup.controls['pesquisaRapida']">
       <i class="glyphicon glyphicon-search form-control-feedback"></i>
     </div>
     <div class="form-group">
       <label for="utiliza-app">Utiliza APP</label>
-      <select class="form-control" id="utiliza-app">
-        <option value="">Sim</option>
-        <option value="">Não</option>
+      <select class="form-control" id="utiliza-app" [formControl]="formGroup.controls['utilizaApp']">
+        <option [value]="selectFilterStatus.notApplied">N/A</option>
+        <option [value]="selectFilterStatus.active">Sim</option>
+        <option [value]="selectFilterStatus.inactive">Não</option>
       </select>
     </div>
     <div class="form-group">
       <label for="antecipacao-automatica">Antecipação automática</label>
-      <select class="form-control" id="antecipacao-automatica">
-        <option value="">N/A</option>
-        <option value="">Possui</option>
-        <option value="">Não possui</option>
+      <select class="form-control" id="antecipacao-automatica" [formControl]="formGroup.controls['antecipacaoAutomatica']">
+        <option [value]="selectFilterStatus.notApplied">N/A</option>
+        <option [value]="selectFilterStatus.active">Possui</option>
+        <option [value]="selectFilterStatus.inactive">Não possui</option>
       </select>
     </div>
     <div class="form-group">
       <label for="limite-recarga">Limite de recarga</label>
-      <select class="form-control" id="limite-recarga">
-        <option value="">N/A</option>
-        <option value="">Possui</option>
-        <option value="">Não possui</option>
+      <select class="form-control" id="limite-recarga" [formControl]="formGroup.controls['limiteRecarga']">
+        <option [value]="selectFilterStatus.notApplied">N/A</option>
+        <option [value]="selectFilterStatus.active">Possui</option>
+        <option [value]="selectFilterStatus.inactive">Não possui</option>
       </select>
     </div>
     <div class="form-group">
       <label for="campanha-churn">Campanha churn</label>
-      <select class="form-control" id="campanha-churn">
-        <option value="">N/A</option>
-        <option value="">Sim</option>
-        <option value="">Não</option>
+      <select class="form-control" id="campanha-churn" [formControl]="formGroup.controls['campanhaChurn']">
+        <option [value]="selectFilterStatus.notApplied">N/A</option>
+        <option [value]="selectFilterStatus.active">Sim</option>
+        <option [value]="selectFilterStatus.inactive">Não</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="campanha-churn">Quantidade de máquinas</label>
-      <select class="form-control" id="campanha-churn">
-        <option value="">N/A</option>
+      <label for="quantidade-maquinas">Quantidade de máquinas</label>
+      <select class="form-control" id="quantidade-maquinas"  [formControl]="formGroup.controls['quantidadeMaquinas']">
+        <option [value]="selectFilterStatus.notApplied">N/A</option>
         <option value="1">1 máquina</option>
         <option value="2">2 máquina</option>
         <option value="3">3 máquina</option>
@@ -56,7 +57,7 @@
     </div>
     <div class="form-group">
       <label for="grupo-economico">Grupo Econômico</label>
-      <input type="text" id="grupo-economico" placeholder="Digite o termo da sua pesquisa" class="form-control">
+      <input type="text" id="grupo-economico" class="form-control" placeholder="Digite o termo da sua pesquisa" [formControl]="formGroup.controls['grupoEconomico']">
     </div>
   </div>
 </div>
