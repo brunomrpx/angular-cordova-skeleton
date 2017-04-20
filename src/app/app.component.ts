@@ -24,6 +24,13 @@ export class AppComponent {
     this.headerService.useSidebar = true;
     this.keycloakService.keycloak = window._keycloak;
 
+    window.addEventListener('native.keyboardshow', function (e) {
+      // scroll to focused input
+      setTimeout(function () {
+        (document.activeElement as any).scrollIntoViewIfNeeded();
+      }, 100);
+    });
+
     this.keycloakService.keycloak.loadUserInfo().success(userInfo => {
       // creating app session
       const session = {
@@ -36,7 +43,7 @@ export class AppComponent {
       // adding keycloak authorization header
       const defaultHeaders = new Headers();
       defaultHeaders.append('Authorization', 'Bearer ' + this.keycloakService.keycloak.token);
-      HttpServiceConfig.defaultRequestOptions = { headers: defaultHeaders};
+      HttpServiceConfig.defaultRequestOptions = { headers: defaultHeaders };
 
       // synchronizing with server
       this.synchronizationService.download().subscribe(
