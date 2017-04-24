@@ -16,7 +16,7 @@ export const SYNCHRONIZATION_ID = 'idSincronizacao';
 
 @Injectable()
 export class SynchronizationService {
-  private url: string = API_BASE_URL + '/sincronizacao';
+  private url: string = API_BASE_URL + '/estabelecimento';
 
   constructor(private httpService: HttpService, private customerService: CustomerService) { }
 
