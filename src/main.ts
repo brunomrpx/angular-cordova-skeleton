@@ -49,6 +49,10 @@ function initKeycloak(JSONFile) {
 
     window.location.reload();
   };
+
+  window._keycloak.onAuthLogout = function() {
+    window.location.reload();
+  };
 }
 
 if (isCordova()) {

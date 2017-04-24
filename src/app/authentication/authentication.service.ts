@@ -18,8 +18,9 @@ export class AuthenticationService {
   public logout() {
     const promise = this.sessionService.clear().then(() => {
       this.keycloakService.keycloak.logout();
-      this.synchronizationService.setSynchronizationId(null);
-      this.customersService.saveCustomers(null);
+      return this.synchronizationService.setSynchronizationId(null);
+    }).then(() => {
+      return this.customersService.saveCustomers(null);
     });
 
     return promise;
