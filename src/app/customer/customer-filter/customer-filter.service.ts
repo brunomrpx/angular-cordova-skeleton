@@ -121,6 +121,10 @@ export class CustomerFilterService {
   }
 
   private filtrarPorGrupo(customer: Customer, filtros: Filters) {
+    if (!customer.grupo) {
+      return filtros.grupoEconomico === '';
+    }
+
     return customer.grupo.toLowerCase().indexOf(filtros.grupoEconomico.toLowerCase()) >= 0;
   }
 
