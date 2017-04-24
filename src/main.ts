@@ -7,6 +7,7 @@ import { environment } from './environments/environment';
 
 declare const window;
 
+let angularStarted = false;
 let keycloakJSONFile = 'assets/keycloak/';
 
 if (environment.production) {
@@ -32,6 +33,7 @@ function initKeycloak(JSONFile) {
       window._keycloak.loadUserProfile().success(profile => {
         // bootstrapping angular application
         platformBrowserDynamic().bootstrapModule(AppModule);
+        angularStarted = true;
       });
     } else {
       window.location.reload();
@@ -39,6 +41,14 @@ function initKeycloak(JSONFile) {
   }).error(error => {
     console.error('keycloak init error: ', error);
   });
+
+  window._keycloak.onAuthSuccess = function() {
+    if (!angularStarted) {
+      return;
+    }
+
+    window.location.reload();
+  };
 }
 
 if (isCordova()) {
