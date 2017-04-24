@@ -46,6 +46,7 @@ export class MenuComponent {
   }
 
   private logout() {
+    this.sidebarSerice.toggleMenuLeft();
     this.authenticationService.logout();
   }
 }

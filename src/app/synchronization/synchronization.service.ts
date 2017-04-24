@@ -74,7 +74,7 @@ export class SynchronizationService {
     return Observable.fromPromise(promise);
   }
 
-  private setSynchronizationId(synchronizationId: number) {
+  public setSynchronizationId(synchronizationId: number) {
     const promise = localForage.setItem(SYNCHRONIZATION_ID, synchronizationId);
     return Observable.fromPromise(promise);
   }
