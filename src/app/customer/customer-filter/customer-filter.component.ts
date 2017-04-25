@@ -29,6 +29,11 @@ export class CustomerFilterComponent {
   }
 
   private handleFiltersChange(filters) {
+    if (this.localChanges) {
+      this.localChanges = false;
+      return;
+    }
+
     this.localChanges = true;
 
     const changes = {};
@@ -49,6 +54,8 @@ export class CustomerFilterComponent {
       this.localChanges = false;
       return;
     }
+
+    this.localChanges = true;
 
     const filters = this.customerFilterService.filters.value;
     let filter, value;
