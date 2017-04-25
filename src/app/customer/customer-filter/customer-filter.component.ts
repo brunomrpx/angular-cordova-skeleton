@@ -13,6 +13,8 @@ export class CustomerFilterComponent {
   private selectFilterStatus = SelectFilterStatus;
 
   constructor(private customerFilterService: CustomerFilterService, private formBuilder: FormBuilder) {
+    let localChanges = false;
+
     this.formGroup = this.formBuilder.group({
       pesquisaRapida: [''],
       utilizaApp: [this.selectFilterStatus.notApplied],
@@ -24,7 +26,17 @@ export class CustomerFilterComponent {
     });
 
     this.formGroup.valueChanges.subscribe(data => {
+      if (localChanges) {
+        localChanges = false;
+        return;
+      }
+
       this.customerFilterService.filters.next(data);
+    });
+
+    this.customerFilterService.filters.subscribe(filters => {
+      localChanges = true;
+      this.formGroup.patchValue(filters);
     });
   }
 }

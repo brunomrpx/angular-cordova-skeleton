@@ -51,6 +51,18 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
+  private removerFiltro(filtroSelecionado) {
+    const filters = this.customerFilterService.filters.value;
+
+    if (filtroSelecionado.filtro === 'pesquisaRapida' || filtroSelecionado.filtro === 'grupoEconomico') {
+      filters[filtroSelecionado.filtro] = '';
+    } else {
+      filters[filtroSelecionado.filtro] = SelectFilterStatus.notApplied;
+    }
+
+    this.customerFilterService.filters.next(filters);
+  }
+
   private toggleFilter() {
     this.sidebarService.toggleMenuRight();
   }

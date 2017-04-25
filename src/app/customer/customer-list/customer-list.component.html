@@ -5,8 +5,10 @@
         <div class="label label-default"
             *ngFor="let filtroSelecionado of filtrosSelecionados"
             [class.label-success]="filtroSelecionado.status == selectFilterStatus.active"
-            [class.label-primary]="filtroSelecionado.status == selectFilterStatus.inactive">
+            [class.label-primary]="filtroSelecionado.status == selectFilterStatus.inactive"
+            (click)="removerFiltro(filtroSelecionado)">
           {{ filtroSelecionado.mensagem }}
+          <i class="fa fa-times"></i>
         </div>
       </div>
       <div class="panel panel-default padding">

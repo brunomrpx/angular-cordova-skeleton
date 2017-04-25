@@ -50,6 +50,7 @@ export class CustomerFilterService {
 
     if (filters.pesquisaRapida !== '') {
       filtrosSelecionados.push({
+        filtro: 'pesquisaRapida',
         mensagem: filters.pesquisaRapida,
         status: null
       });
@@ -60,6 +61,7 @@ export class CustomerFilterService {
 
       if (valor !== SelectFilterStatus.notApplied) {
         filtrosSelecionados.push({
+          filtro: prop,
           mensagem: mensagens[prop],
           status: filters[prop]
         });
@@ -77,6 +79,7 @@ export class CustomerFilterService {
       }
 
       filtrosSelecionados.push({
+        filtro: 'quantidadeMaquinas',
         mensagem: mensagem,
         status: null
       });
@@ -84,6 +87,7 @@ export class CustomerFilterService {
 
     if (filters.grupoEconomico !== '') {
       filtrosSelecionados.push({
+        filtro: 'grupoEconomico',
         mensagem: filters.grupoEconomico,
         status: null
       });
@@ -117,7 +121,17 @@ export class CustomerFilterService {
   }
 
   private filtrarPorPesquisaRapida(customer: Customer, filtros: Filters) {
-    return customer.nome.toLowerCase().indexOf(filtros.pesquisaRapida.toLowerCase()) >= 0;
+    let propValue;
+    const pesquisaRapida = filtros.pesquisaRapida.toLowerCase();
+
+    for (const prop in customer) {
+      propValue = customer[prop];
+      if (typeof propValue === 'string' && (propValue.toLowerCase().indexOf(pesquisaRapida) >= 0)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private filtrarPorGrupo(customer: Customer, filtros: Filters) {
