@@ -4,13 +4,22 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { Customer } from '../customer.service';
 
 export interface Filters {
-  pesquisaRapida: string;
-  grupoEconomico: string;
-  utilizaApp: SelectFilterStatus;
-  antecipacaoAutomatica: SelectFilterStatus;
-  limiteRecarga: SelectFilterStatus;
-  campanhaChurn: SelectFilterStatus;
-  quantidadeMaquinas: SelectFilterStatus;
+  pesquisaRapida: Filter;
+  grupoEconomico: Filter;
+  utilizaApp: Filter;
+  antecipacaoAutomatica: Filter;
+  limiteRecarga: Filter;
+  campanhaChurn: Filter;
+  quantidadeMaquinas: Filter;
+}
+
+export interface Filter {
+  label: string;
+  value: string;
+  status: SelectFilterStatus;
+  showValueAsLabel?: true;
+  search?: boolean;
+  customValue?: boolean;
 }
 
 export enum SelectFilterStatus {
@@ -19,82 +28,51 @@ export enum SelectFilterStatus {
   active
 }
 
-export interface FiltrosSelecionados {
-  mensagem: string;
-  status: SelectFilterStatus;
-}
-
-export const mensagens: { [key: string]: string } = {
-  utilizaApp: 'Utiliza App',
-  antecipacaoAutomatica: 'Antecipação automática',
-  limiteRecarga: 'Limite de recarga',
-  campanhaChurn: 'Campanha churn',
-};
-
 @Injectable()
 export class CustomerFilterService {
   public filters: BehaviorSubject<Filters> = new BehaviorSubject<Filters>({
-    pesquisaRapida: '',
-    grupoEconomico: '',
-    utilizaApp: SelectFilterStatus.notApplied,
-    antecipacaoAutomatica: SelectFilterStatus.notApplied,
-    limiteRecarga: SelectFilterStatus.notApplied,
-    campanhaChurn: SelectFilterStatus.notApplied,
-    quantidadeMaquinas: SelectFilterStatus.notApplied
+    pesquisaRapida: {
+      label: null,
+      value: '',
+      search: true,
+      showValueAsLabel: true,
+      status: SelectFilterStatus.notApplied
+    },
+    grupoEconomico: {
+      label: null,
+      value: '',
+      search: true,
+      showValueAsLabel: true,
+      status: SelectFilterStatus.notApplied
+    },
+    utilizaApp: {
+      label: 'Utiliza App',
+      value: null,
+      status: SelectFilterStatus.notApplied
+    },
+    antecipacaoAutomatica: {
+      label: 'Antecipação automática',
+      value: null,
+      status: SelectFilterStatus.notApplied
+    },
+    limiteRecarga: {
+      label: 'Limite de recarga',
+      value: null,
+      status: SelectFilterStatus.notApplied
+    },
+    campanhaChurn: {
+      label: 'Campanha churn',
+      value: null,
+      status: SelectFilterStatus.notApplied
+    },
+    quantidadeMaquinas: {
+      label: null,
+      value: null,
+      showValueAsLabel: true,
+      customValue: true,
+      status: SelectFilterStatus.notApplied
+    },
   });
-
-  public getMensagensFiltrosSelecionados(filters: Filters) {
-    const filtrosSelecionados = [];
-    const quantidadeMaquinas = parseInt(String(filters.quantidadeMaquinas), 10);
-    let valor;
-
-    if (filters.pesquisaRapida !== '') {
-      filtrosSelecionados.push({
-        filtro: 'pesquisaRapida',
-        mensagem: filters.pesquisaRapida,
-        status: null
-      });
-    }
-
-    for (const prop in mensagens) {
-      valor = parseInt(String(filters[prop]), 10);
-
-      if (valor !== SelectFilterStatus.notApplied) {
-        filtrosSelecionados.push({
-          filtro: prop,
-          mensagem: mensagens[prop],
-          status: filters[prop]
-        });
-      }
-    }
-
-    if (quantidadeMaquinas !== SelectFilterStatus.notApplied) {
-      let mensagem = '6 máquinas ou mais';
-
-      if (quantidadeMaquinas < 6) {
-        mensagem = `${quantidadeMaquinas} máquina`;
-        if (quantidadeMaquinas > 1) {
-          mensagem += 's';
-        }
-      }
-
-      filtrosSelecionados.push({
-        filtro: 'quantidadeMaquinas',
-        mensagem: mensagem,
-        status: null
-      });
-    }
-
-    if (filters.grupoEconomico !== '') {
-      filtrosSelecionados.push({
-        filtro: 'grupoEconomico',
-        mensagem: filters.grupoEconomico,
-        status: null
-      });
-    }
-
-    return filtrosSelecionados;
-  }
 
   public filterCustomers(customers: Customer[], filters: Filters) {
     const filtros = [
@@ -122,7 +100,7 @@ export class CustomerFilterService {
 
   private filtrarPorPesquisaRapida(customer: Customer, filtros: Filters) {
     let propValue;
-    const pesquisaRapida = filtros.pesquisaRapida.toLowerCase();
+    const pesquisaRapida = filtros.pesquisaRapida.value.toLowerCase();
 
     for (const prop in customer) {
       propValue = customer[prop];
@@ -136,14 +114,14 @@ export class CustomerFilterService {
 
   private filtrarPorGrupo(customer: Customer, filtros: Filters) {
     if (!customer.grupo) {
-      return filtros.grupoEconomico === '';
+      return filtros.grupoEconomico.value === '';
     }
 
-    return customer.grupo.toLowerCase().indexOf(filtros.grupoEconomico.toLowerCase()) >= 0;
+    return customer.grupo.toLowerCase().indexOf(filtros.grupoEconomico.value.toLowerCase()) >= 0;
   }
 
   private filtrarPorUtilizaApp(customer: Customer, filtros: Filters) {
-    const utilizaApp = parseInt(String(filtros.utilizaApp), 10);
+    const utilizaApp = filtros.utilizaApp.status;
 
     if (utilizaApp === SelectFilterStatus.notApplied) {
       return true;
@@ -153,7 +131,7 @@ export class CustomerFilterService {
   }
 
   private filtrarPorAntecipacaoAutomatica(customer: Customer, filtros: Filters) {
-    const antecipacaoAutomatica = parseInt(String(filtros.antecipacaoAutomatica), 10);
+    const antecipacaoAutomatica = filtros.antecipacaoAutomatica.status;
 
     if (antecipacaoAutomatica === SelectFilterStatus.notApplied) {
       return true;
@@ -163,7 +141,7 @@ export class CustomerFilterService {
   }
 
   private filtrarPorLimiteRecarga(customer: Customer, filtros: Filters) {
-    const limiteRecarga = parseInt(String(filtros.limiteRecarga), 10);
+    const limiteRecarga = filtros.limiteRecarga.status;
 
     if (limiteRecarga === SelectFilterStatus.notApplied) {
       return true;
@@ -177,7 +155,7 @@ export class CustomerFilterService {
   }
 
   private filtrarPorCampanhaChurn(customer: Customer, filtros: Filters) {
-    const campanhaChurn = parseInt(String(filtros.campanhaChurn), 10);
+    const campanhaChurn = filtros.campanhaChurn.status;
 
     if (campanhaChurn === SelectFilterStatus.notApplied) {
       return true;
@@ -187,7 +165,8 @@ export class CustomerFilterService {
   }
 
   private filtrarPorQuantidadeMaquinas(customer: Customer, filtros: Filters) {
-    const filtroQuantidadeMaquinas = parseInt(String(filtros.quantidadeMaquinas), 10);
+    const filtroQuantidadeMaquinas = filtros.quantidadeMaquinas.status;
+    const valorQuantidadeMaquinas = parseInt(filtros.quantidadeMaquinas.value, 10);
 
     if (filtroQuantidadeMaquinas === SelectFilterStatus.notApplied) {
       return true;
@@ -195,10 +174,10 @@ export class CustomerFilterService {
 
     const totalMaquinas = customer.qtdMaquinasPOS + customer.qtdMaquinasTEF;
 
-    if (filtroQuantidadeMaquinas < 6) {
-      return totalMaquinas === filtroQuantidadeMaquinas;
+    if (valorQuantidadeMaquinas < 6) {
+      return totalMaquinas === valorQuantidadeMaquinas;
     }
 
-    return totalMaquinas >= filtros.quantidadeMaquinas;
+    return totalMaquinas >= valorQuantidadeMaquinas;
   }
 }

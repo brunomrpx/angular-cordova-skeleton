@@ -11,32 +11,87 @@ import { CustomerFilterService, Filters, SelectFilterStatus } from './customer-f
 export class CustomerFilterComponent {
   private formGroup: FormGroup;
   private selectFilterStatus = SelectFilterStatus;
+  private localChanges = false;
 
   constructor(private customerFilterService: CustomerFilterService, private formBuilder: FormBuilder) {
-    let localChanges = false;
-
     this.formGroup = this.formBuilder.group({
       pesquisaRapida: [''],
+      grupoEconomico: [''],
       utilizaApp: [this.selectFilterStatus.notApplied],
       antecipacaoAutomatica: [this.selectFilterStatus.notApplied],
       limiteRecarga: [this.selectFilterStatus.notApplied],
       campanhaChurn: [this.selectFilterStatus.notApplied],
-      quantidadeMaquinas: [this.selectFilterStatus.notApplied],
-      grupoEconomico: ['']
+      quantidadeMaquinas: [this.selectFilterStatus.notApplied]
     });
 
-    this.formGroup.valueChanges.subscribe(data => {
-      if (localChanges) {
-        localChanges = false;
-        return;
+    this.formGroup.valueChanges.subscribe(this.handleFormChange.bind(this));
+    this.customerFilterService.filters.subscribe(this.handleFiltersChange.bind(this));
+  }
+
+  private handleFiltersChange(filters) {
+    this.localChanges = true;
+
+    const changes = {};
+
+    for (const prop in filters) {
+      if (filters[prop].value !== null) {
+        changes[prop] = filters[prop].value;
+      } else {
+        changes[prop] = filters[prop].status;
+      }
+    }
+
+    this.formGroup.patchValue(changes);
+  }
+
+  private handleFormChange(data) {
+    if (this.localChanges) {
+      this.localChanges = false;
+      return;
+    }
+
+    const filters = this.customerFilterService.filters.value;
+    let filter, value;
+
+    for (const prop in data) {
+      filter = filters[prop];
+      value = data[prop];
+
+      if (filter.search) {
+       this.updateSearchFilter(filter, value);
+      } else if (filter.customValue) {
+        this.updateCustomValueFilter(filter, value);
+      } else {
+        this.updateDefaultFilter(filter, value);
       }
 
-      this.customerFilterService.filters.next(data);
-    });
+      if (filter.showValueAsLabel) {
+        filter.label = value;
+      }
 
-    this.customerFilterService.filters.subscribe(filters => {
-      localChanges = true;
-      this.formGroup.patchValue(filters);
-    });
+      filter.value = value;
+    }
+
+    this.customerFilterService.filters.next(filters);
+  }
+
+  private updateSearchFilter(filter, value) {
+    if (value === '') {
+      filter.status = SelectFilterStatus.notApplied;
+    } else {
+      filter.status = SelectFilterStatus.active;
+    }
+  }
+
+  private updateCustomValueFilter(filter, value) {
+    if (parseInt(value, 10) === SelectFilterStatus.notApplied) {
+      filter.status = SelectFilterStatus.notApplied;
+    } else {
+      filter.status = SelectFilterStatus.active;
+    }
+  }
+
+  private updateDefaultFilter(filter, value) {
+    filter.status = parseInt(value, 10);
   }
 }

@@ -4,7 +4,11 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { HttpService } from '../../shared/http/http.service';
 import { CustomerService, Customer } from '../customer.service';
-import { CustomerFilterService, Filters, SelectFilterStatus, FiltrosSelecionados } from '../customer-filter/customer-filter.service';
+import { CustomerFilterService, Filters, Filter, SelectFilterStatus } from '../customer-filter/customer-filter.service';
+
+interface SelectedFilters extends Filter {
+  id: string;
+}
 
 @Component({
   selector: 'app-customer-list',
@@ -12,14 +16,14 @@ import { CustomerFilterService, Filters, SelectFilterStatus, FiltrosSelecionados
   styleUrls: ['./customer-list.component.less']
 })
 export class CustomerListComponent implements OnInit {
-  private filterOpened: boolean = false;
+  private filterOpened = false;
   private filterIcon = {
     opened: 'fa-chevron-left',
     closed: 'fa-search'
   };
   private customerList: Customer[] = [];
   private filteredCustomers: Customer[] = [];
-  private filtrosSelecionados: FiltrosSelecionados[] = [];
+  private filtrosSelecionados: SelectedFilters[] = [];
   private selectFilterStatus = SelectFilterStatus;
 
   constructor(
@@ -46,19 +50,37 @@ export class CustomerListComponent implements OnInit {
     });
 
     this.customerFilterService.filters.subscribe(filters => {
-      this.filtrosSelecionados = this.customerFilterService.getMensagensFiltrosSelecionados(filters);
+      this.filtrosSelecionados = this.getSelectedFilters(filters);
       this.filteredCustomers = this.customerFilterService.filterCustomers(this.customerList, filters);
     });
   }
 
+  private getSelectedFilters(filters: Filters) {
+    const selectedFilters: SelectedFilters[] = [];
+
+    for (const prop in filters) {
+      if (filters[prop].status !== SelectFilterStatus.notApplied) {
+        selectedFilters.push({
+          id: prop,
+          ...filters[prop]
+        });
+      }
+    }
+
+    return selectedFilters;
+  }
+
   private removerFiltro(filtroSelecionado) {
     const filters = this.customerFilterService.filters.value;
+    const filtro = filters[filtroSelecionado.id];
 
-    if (filtroSelecionado.filtro === 'pesquisaRapida' || filtroSelecionado.filtro === 'grupoEconomico') {
-      filters[filtroSelecionado.filtro] = '';
+    if (filtro.search) {
+      filtro.value = '';
     } else {
-      filters[filtroSelecionado.filtro] = SelectFilterStatus.notApplied;
+      filtro.value = SelectFilterStatus.notApplied;
     }
+
+    filtro.status = SelectFilterStatus.notApplied;
 
     this.customerFilterService.filters.next(filters);
   }

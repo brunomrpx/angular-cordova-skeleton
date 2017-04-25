@@ -4,10 +4,11 @@
       <div class="selected-filters padding-bottom" *ngIf="filtrosSelecionados.length > 0">
         <div class="label label-default"
             *ngFor="let filtroSelecionado of filtrosSelecionados"
-            [class.label-success]="filtroSelecionado.status == selectFilterStatus.active"
-            [class.label-primary]="filtroSelecionado.status == selectFilterStatus.inactive"
+            [class.label-default]="filtroSelecionado.search || filtroSelecionado.customValue"
+            [class.label-success]="(!filtroSelecionado.search && !filtroSelecionado.customValue) && filtroSelecionado.status === selectFilterStatus.active"
+            [class.label-primary]="(!filtroSelecionado.search && !filtroSelecionado.customValue) && filtroSelecionado.status === selectFilterStatus.inactive"
             (click)="removerFiltro(filtroSelecionado)">
-          {{ filtroSelecionado.mensagem }}
+          {{ filtroSelecionado.label }}
           <i class="fa fa-times"></i>
         </div>
       </div>
