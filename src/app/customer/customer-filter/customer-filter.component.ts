@@ -94,4 +94,11 @@ export class CustomerFilterComponent {
   private updateDefaultFilter(filter, value) {
     filter.status = parseInt(value, 10);
   }
+
+  private removeAllFilters() {
+    const filters = this.customerFilterService.filters.value;
+    const filtersIds = Object.keys(filters);
+
+    this.customerFilterService.removeFilters(filtersIds);
+  }
 }

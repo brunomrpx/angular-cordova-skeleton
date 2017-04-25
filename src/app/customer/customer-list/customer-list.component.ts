@@ -6,7 +6,7 @@ import { HttpService } from '../../shared/http/http.service';
 import { CustomerService, Customer } from '../customer.service';
 import { CustomerFilterService, Filters, Filter, SelectFilterStatus } from '../customer-filter/customer-filter.service';
 
-interface SelectedFilters extends Filter {
+interface SelectedFilter extends Filter {
   id: string;
 }
 
@@ -23,7 +23,7 @@ export class CustomerListComponent implements OnInit {
   };
   private customerList: Customer[] = [];
   private filteredCustomers: Customer[] = [];
-  private filtrosSelecionados: SelectedFilters[] = [];
+  private filtrosSelecionados: SelectedFilter[] = [];
   private selectFilterStatus = SelectFilterStatus;
 
   constructor(
@@ -56,7 +56,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   private getSelectedFilters(filters: Filters) {
-    const selectedFilters: SelectedFilters[] = [];
+    const selectedFilters: SelectedFilter[] = [];
 
     for (const prop in filters) {
       if (filters[prop].status !== SelectFilterStatus.notApplied) {
@@ -70,19 +70,8 @@ export class CustomerListComponent implements OnInit {
     return selectedFilters;
   }
 
-  private removerFiltro(filtroSelecionado) {
-    const filters = this.customerFilterService.filters.value;
-    const filtro = filters[filtroSelecionado.id];
-
-    if (filtro.search) {
-      filtro.value = '';
-    } else {
-      filtro.value = SelectFilterStatus.notApplied;
-    }
-
-    filtro.status = SelectFilterStatus.notApplied;
-
-    this.customerFilterService.filters.next(filters);
+  private removerFiltro(filtroSelecionado: SelectedFilter) {
+    this.customerFilterService.removeFilters(filtroSelecionado.id);
   }
 
   private toggleFilter() {

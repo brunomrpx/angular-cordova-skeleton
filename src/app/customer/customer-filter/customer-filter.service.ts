@@ -74,6 +74,30 @@ export class CustomerFilterService {
     },
   });
 
+  public removeFilters(filters: string[] | string) {
+    const filtersValue = this.filters.value;
+
+    if (typeof filters === 'string') {
+      filters = [filters];
+    }
+
+    filters.forEach(filter => this.removeFilterFromObject(filtersValue, filter));
+
+    this.filters.next(filtersValue);
+  }
+
+  public removeFilterFromObject(filtersObject: Filters, filterId: string) {
+    const filter = filtersObject[filterId];
+
+    if (filter.search) {
+      filter.value = '';
+    } else {
+      filter.value = SelectFilterStatus.notApplied;
+    }
+
+    filter.status = SelectFilterStatus.notApplied;
+  }
+
   public filterCustomers(customers: Customer[], filters: Filters) {
     const filtros = [
       this.filtrarPorPesquisaRapida,
