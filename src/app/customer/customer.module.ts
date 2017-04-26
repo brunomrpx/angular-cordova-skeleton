@@ -10,6 +10,7 @@ import { CustomerFilterComponent } from './customer-filter/customer-filter.compo
 import { CustomerListHeaderComponent } from './customer-list/customer-list-header/customer-list-header.component';
 import { CustomerService } from './customer.service';
 import { CustomerFilterService } from './customer-filter/customer-filter.service';
+import { DadosCadastraisComponent } from './customer-detail/dados-cadastrais/dados-cadastrais.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CustomerFilterService } from './customer-filter/customer-filter.service
     CustomerListComponent,
     CustomerDetailComponent,
     CustomerFilterComponent,
-    CustomerListHeaderComponent
+    CustomerListHeaderComponent,
+    DadosCadastraisComponent
   ],
   providers: [
     CustomerService,
