@@ -12,6 +12,7 @@ import { CustomerService } from './customer.service';
 import { CustomerFilterService } from './customer-filter/customer-filter.service';
 import { DadosCadastraisComponent } from './customer-detail/dados-cadastrais/dados-cadastrais.component';
 import { MaquinasInstaladasComponent } from './customer-detail/maquinas-instaladas/maquinas-instaladas.component';
+import { FaturamentoTotalComponent } from './customer-detail/faturamento-total/faturamento-total.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MaquinasInstaladasComponent } from './customer-detail/maquinas-instalad
     CustomerFilterComponent,
     CustomerListHeaderComponent,
     DadosCadastraisComponent,
-    MaquinasInstaladasComponent
+    MaquinasInstaladasComponent,
+    FaturamentoTotalComponent
   ],
   providers: [
     CustomerService,
