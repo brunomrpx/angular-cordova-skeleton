@@ -24,7 +24,7 @@
           </div>
         </div>
         <ul class="list-group">
-          <li class="list-group-item customer" *ngFor="let customer of filteredCustomers">
+          <li class="list-group-item customer" *ngFor="let customer of filteredCustomers" [routerLink]="['/customer', customer.idEstabelecimento, 'details']">
             <div class="row">
               <div class="col-xs-7">
                 <strong>{{ customer.nome }}</strong>

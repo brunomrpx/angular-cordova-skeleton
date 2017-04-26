@@ -4,10 +4,11 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import * as localForage from 'localforage';
 
 export interface Customer {
+  idEstabelecimento: number;
   bairro: string;
   campanhaChurn: boolean;
   cidade: string;
-  dataUltimaVisita: number;
+  dataUltimaVisita: string;
   grupo: string;
   limiteCreditoRecarga: number;
   nome: string;
@@ -29,6 +30,27 @@ export class CustomerService {
 
   public getCustomers(): Promise<Customer[]> {
     return localForage.getItem(CUSTOMERS_ID);
+  }
+
+  public getCustomersBy(query: {}, returnList = true) {
+    return this.getCustomers().then(customers => {
+      const filterMethod: string = returnList ? 'filter' : 'find';
+      const filteredCustomers = Array.prototype[filterMethod].call(customers, (customer) => {
+        return this.filterCustomer(query, customer);
+      });
+
+      return filteredCustomers;
+    });
+  }
+
+  private filterCustomer(query: {}, customer: Customer) {
+    for (const prop in query) {
+      if (customer[prop] !== query[prop]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   public saveCustomers(customers: Customer[]): Promise<Customer[]> {

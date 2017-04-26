@@ -48,11 +48,11 @@ export class SidebarComponent {
     const menuLeftSlideout = this.sidebarService.menuLeft.value.slideoutInstance;
     const menuRightSlideout = this.sidebarService.menuRight.value.slideoutInstance;
 
-    if (menuLeftSlideout.isOpen()) {
+    if (menuLeftSlideout && menuLeftSlideout.isOpen()) {
       menuLeftSlideout.toggle();
     }
 
-    if (menuRightSlideout.isOpen()) {
+    if (menuRightSlideout && menuRightSlideout.isOpen()) {
       menuRightSlideout.toggle();
     }
   }

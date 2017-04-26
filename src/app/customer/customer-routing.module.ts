@@ -25,11 +25,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'detail',
+        path: ':id/details',
         component: SidebarComponent,
         children: [
           { path: '', component: CustomerDetailComponent },
-          { path: '', component: HeaderComponent, outlet: 'header', data: { title: 'Customer Detail' } }
+          { path: '', component: HeaderComponent, outlet: 'header', data: { title: 'Detalhes EC' } }
         ]
       }
     ]
