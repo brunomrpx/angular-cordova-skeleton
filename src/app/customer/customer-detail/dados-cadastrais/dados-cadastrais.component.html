@@ -45,7 +45,7 @@
       <div class="col-xs-8">03 - EMPRESAS II</div>
       <div class="col-xs-4">-</div>
     </div>
-    <div [hidden]="!toggleOpen">
+    <div [hidden]="!contentOpened">
       <div class="row">
         <div class="col-xs-8">
           <strong class="dados-cadastrais__titulo">Correntista</strong>
@@ -117,11 +117,11 @@
           <strong class="dados-cadastrais__titulo">Tipo</strong>
         </div>
       </div>
-      <div class="row dados-cadastrais__responsaveis-item">
+      <div class="row bottom-dotted dados-cadastrais__responsaveis-item">
         <div class="col-xs-6">MARCIO PEREIRA DE SOUZA</div>
         <div class="col-xs-6 text-right text-secondary">Representante legal</div>
       </div>
-      <div class="row dados-cadastrais__responsaveis-item">
+      <div class="row bottom-dotted dados-cadastrais__responsaveis-item">
         <div class="col-xs-6">RODRIGO PEREIRA DE SOUZA</div>
         <div class="col-xs-6 text-right text-secondary">Sócio</div>
       </div>
@@ -131,7 +131,7 @@
       </div>
     </div>
   </div>
-  <div class="panel-footer" (click)="toggle()">
-    {{ toggleOpen ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
+  <div class="panel-footer" (click)="toggleContent()">
+    {{ contentOpened ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
   </div>
 </div>

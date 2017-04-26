@@ -11,6 +11,7 @@ import { CustomerListHeaderComponent } from './customer-list/customer-list-heade
 import { CustomerService } from './customer.service';
 import { CustomerFilterService } from './customer-filter/customer-filter.service';
 import { DadosCadastraisComponent } from './customer-detail/dados-cadastrais/dados-cadastrais.component';
+import { MaquinasInstaladasComponent } from './customer-detail/maquinas-instaladas/maquinas-instaladas.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { DadosCadastraisComponent } from './customer-detail/dados-cadastrais/dad
     CustomerDetailComponent,
     CustomerFilterComponent,
     CustomerListHeaderComponent,
-    DadosCadastraisComponent
+    DadosCadastraisComponent,
+    MaquinasInstaladasComponent
   ],
   providers: [
     CustomerService,

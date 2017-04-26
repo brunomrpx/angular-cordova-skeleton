@@ -10,9 +10,9 @@ import { CustomerService, Customer } from '../../customer.service';
 })
 export class DadosCadastraisComponent {
   @Input() private customer: Customer | {} = {};
-  private toggleOpen = false;
+  private contentOpened = false;
 
-  private toggle(toggleId) {
-    this.toggleOpen = !this.toggleOpen;
+  private toggleContent(toggleId) {
+    this.contentOpened = !this.contentOpened;
   }
 }
