@@ -15,6 +15,7 @@ import { MaquinasInstaladasComponent } from './customer-detail/maquinas-instalad
 import { FaturamentoTotalComponent } from './customer-detail/faturamento-total/faturamento-total.component';
 import { FaturamentoMensalComponent } from './customer-detail/faturamento-mensal/faturamento-mensal.component';
 import { TaxasVigentesComponent } from './customer-detail/taxas-vigentes/taxas-vigentes.component';
+import { AntecipacaoAutomaticaComponent } from './customer-detail/antecipacao-automatica/antecipacao-automatica.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { TaxasVigentesComponent } from './customer-detail/taxas-vigentes/taxas-v
     MaquinasInstaladasComponent,
     FaturamentoTotalComponent,
     FaturamentoMensalComponent,
-    TaxasVigentesComponent
+    TaxasVigentesComponent,
+    AntecipacaoAutomaticaComponent
   ],
   providers: [
     CustomerService,
