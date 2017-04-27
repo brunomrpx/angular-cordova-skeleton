@@ -14,6 +14,7 @@ import { DadosCadastraisComponent } from './customer-detail/dados-cadastrais/dad
 import { MaquinasInstaladasComponent } from './customer-detail/maquinas-instaladas/maquinas-instaladas.component';
 import { FaturamentoTotalComponent } from './customer-detail/faturamento-total/faturamento-total.component';
 import { FaturamentoMensalComponent } from './customer-detail/faturamento-mensal/faturamento-mensal.component';
+import { TaxasVigentesComponent } from './customer-detail/taxas-vigentes/taxas-vigentes.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { FaturamentoMensalComponent } from './customer-detail/faturamento-mensal
     DadosCadastraisComponent,
     MaquinasInstaladasComponent,
     FaturamentoTotalComponent,
-    FaturamentoMensalComponent
+    FaturamentoMensalComponent,
+    TaxasVigentesComponent
   ],
   providers: [
     CustomerService,
