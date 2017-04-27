@@ -1,0 +1,8 @@
+<div [class.content-opened]="contentOpened">
+  <div (click)="toggleContent($event)">
+    <ng-content select=".title"></ng-content>
+  </div>
+  <div [hidden]="!contentOpened">
+    <ng-content select=".content"></ng-content>
+  </div>
+</div>

@@ -1,42 +1,65 @@
-.panel-body {
-  background-color: #F5F5F5;
-  margin-top: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
+app-customer-faturamento-mensal {
+  .panel-body {
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+  }
 
-.faturamento__item {
-  padding: 10px 0;
-  margin-top: 0;
-  background-color: #fff;
-
-  .faturamento__status {
-    margin-right: 10px;
-
-    &--ativo {
-      color: #667B35;
+  .content-opened {
+    .content {
+      box-shadow: inset 0 -14px 8px -10px fade(#000, 16%);
     }
 
-    &--inativo {
-      color: #FF2700;
+    .faturamento__item {
+      box-shadow: 0px 3px 6px 0px fade(#000, 16%);
     }
   }
 
-  .faturamento__toggle {
-    vertical-align: middle;
-    margin-left: 5px;
-    font-size: 20px;
+  .faturamento__item {
+    padding: 10px 0;
+    margin-top: 0;
+    background-color: #fff;
+
+    .faturamento__status {
+      margin-right: 10px;
+
+      &--ativo {
+        color: #667B35;
+      }
+
+      &--inativo {
+        color: #FF2700;
+      }
+    }
+
+    .faturamento__toggle {
+      vertical-align: middle;
+      margin-left: 5px;
+      font-size: 20px;
+    }
   }
-}
 
-.faturamento__conteudo {
-  margin: 0;
-  padding: 10px 0;
-}
+  .faturamento__item,
+  .faturamento__divisor {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
-.faturamento__divisor {
-  font-size: 16px;
-  background-color: #757165;
-  color: #fff;
-  padding: 10px 0;
+  .faturamento__conteudo {
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .faturamento__divisor {
+    font-size: 16px;
+    background-color: #757165;
+    color: #fff;
+    padding: 8px 0;
+    font-weight: bold;
+  }
+
+  .faturamento__valor {
+    font-size: 13px;
+    color: #757164;
+  }
 }

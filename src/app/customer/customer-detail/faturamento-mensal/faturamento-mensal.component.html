@@ -7,62 +7,48 @@
     </div>
   </div>
   <div class="panel-body faturamento">
-    <div class="row bottom-dotted faturamento__item">
-      <div class="col-xs-6">
-        <i class="fa fa-circle faturamento__status faturamento__status--ativo"></i>
-        <strong>Master</strong>
+    <app-collapse-content>
+      <div class="title">
+        <div class="row bottom-dotted faturamento__item">
+          <div class="col-xs-6">
+            <i class="fa fa-circle faturamento__status faturamento__status--ativo"></i>
+            <strong>Master</strong>
+          </div>
+          <div class="col-xs-6 text-right">
+            <span class="faturamento__valor">R$ 9.971,13</span>
+            <i class="fa fa-ellipsis-v text-secondary faturamento__toggle"></i>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-6 text-right">
-        R$ 9.971,13
-        <i class="fa fa-ellipsis-v text-secondary faturamento__toggle"></i>
+      <div class="content">
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-1</i></div>
+          <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
+        </div>
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-2</i></div>
+          <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
+        </div>
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-3</i></div>
+          <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
+        </div>
+        <div class="row faturamento__divisor">
+          <div class="col-xs-12">Transações</div>
+        </div>
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-1</i></div>
+          <div class="col-xs-6 text-right">70</div>
+        </div>
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-2</i></div>
+          <div class="col-xs-6 text-right">70</div>
+        </div>
+        <div class="row faturamento__conteudo">
+          <div class="col-xs-6"><i>M-3</i></div>
+          <div class="col-xs-6 text-right">70</div>
+        </div>
       </div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M1</div>
-      <div class="col-xs-6 text-right">R$ 9.172,57</div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M2</div>
-      <div class="col-xs-6 text-right">R$ 9.172,57</div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M3</div>
-      <div class="col-xs-6 text-right">R$ 9.172,57</div>
-    </div>
-    <div class="row faturamento__divisor">
-      <div class="col-xs-12">Transações</div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M1</div>
-      <div class="col-xs-6 text-right">70</div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M2</div>
-      <div class="col-xs-6 text-right">70</div>
-    </div>
-    <div class="row faturamento__conteudo">
-      <div class="col-xs-6">M3</div>
-      <div class="col-xs-6 text-right">70</div>
-    </div>
-    <div class="row bottom-dotted faturamento__item">
-      <div class="col-xs-6">
-        <i class="fa fa-circle faturamento__status faturamento__status--ativo"></i>
-        <strong>Visa</strong>
-      </div>
-      <div class="col-xs-6 text-right">
-        R$ 9.971,13
-        <i class="fa fa-ellipsis-v text-secondary faturamento__toggle"></i>
-      </div>
-    </div>
-    <div class="row faturamento__item">
-      <div class="col-xs-6">
-        <i class="fa fa-circle faturamento__status faturamento__status--ativo"></i>
-        <strong>Amex</strong>
-      </div>
-      <div class="col-xs-6 text-right">
-        R$ 9.971,13
-        <i class="fa fa-ellipsis-v text-secondary faturamento__toggle"></i>
-      </div>
-    </div>
+    </app-collapse-content>
   </div>
 </div>

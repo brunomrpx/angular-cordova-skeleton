@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { HeaderService } from './header/header.service';
 import { MenuComponent } from './menu/menu.component';
 import { HttpService } from './http/http.service';
+import { CollapseContentComponent } from './collapse-content/collapse-content.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { HttpService } from './http/http.service';
   ],
   exports: [
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    CollapseContentComponent
   ],
   declarations: [
     SidebarComponent,
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    CollapseContentComponent
   ],
   providers: [
     SidebarService,
