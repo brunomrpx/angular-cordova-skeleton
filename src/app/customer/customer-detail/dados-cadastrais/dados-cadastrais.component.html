@@ -1,11 +1,11 @@
-<div class="panel panel-default dados-cadastrais">
+<div class="panel panel-default panel-card dados-cadastrais">
   <div class="panel-heading">
     <div class="row">
       <div class="col-xs-9">
-        <strong class="dados-cadastrais__nome">{{ customer.nome }}</strong>
+        <strong class="dados-cadastrais__nome panel-card__title">{{ customer.nome }}</strong>
       </div>
-      <div class="col-xs-3 text-center dados-cadastrais__status dados-cadastrais__status--ativo">
-        <i class="fa fa-circle dados-cadastrais__status-icone"></i>
+      <div class="col-xs-3 text-center">
+        <i class="fa fa-circle dados-cadastrais__status-icone status--1"></i>
         <p>Ativo</p>
       </div>
     </div>
@@ -35,10 +35,10 @@
     </div>
     <div class="row">
       <div class="col-xs-8">
-        <strong class="dados-cadastrais__titulo">Segmentos</strong>
+        <strong class="dados-cadastrais__titulo panel-card__title">Segmentos</strong>
       </div>
       <div class="col-xs-4">
-        <strong class="dados-cadastrais__titulo">Grupo</strong>
+        <strong class="dados-cadastrais__titulo panel-card__title">Grupo</strong>
       </div>
     </div>
     <div class="row">
@@ -48,10 +48,10 @@
     <div [hidden]="!contentOpened">
       <div class="row">
         <div class="col-xs-8">
-          <strong class="dados-cadastrais__titulo">Correntista</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Correntista</strong>
         </div>
         <div class="col-xs-4">
-          <strong class="dados-cadastrais__titulo">Agência</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Agência</strong>
         </div>
       </div>
       <div class="row">
@@ -60,10 +60,10 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <strong class="dados-cadastrais__titulo">Número ECs no Grupo</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Número ECs no Grupo</strong>
         </div>
         <div class="col-xs-4">
-          <strong class="dados-cadastrais__titulo">Regional</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Regional</strong>
         </div>
       </div>
       <div class="row">
@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-xs-5">
           <div>
-            <strong class="dados-cadastrais__titulo">Telefones</strong>
+            <strong class="dados-cadastrais__titulo panel-card__title">Telefones</strong>
           </div>
           (11) 958499625<br>
           (11) 41932500<br>
@@ -84,48 +84,48 @@
         </div>
         <div class="col-xs-7">
           <div>
-            <strong class="dados-cadastrais__titulo">Data credenciamento</strong>
+            <strong class="dados-cadastrais__titulo panel-card__title">Data credenciamento</strong>
           </div>
           <div>29/12/2011</div>
           <div class="padding-top">
-            <strong class="dados-cadastrais__titulo">E-mail</strong>
+            <strong class="dados-cadastrais__titulo panel-card__title">E-mail</strong>
           </div>
           <div>habibs275@terra.com.br</div>
         </div>
       </div>
       <div class="row margin-top">
         <div class="col-xs-5 text-secondary">
-          <strong class="dados-cadastrais__titulo">Ramo: </strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Ramo: </strong>
           T&E
         </div>
         <div class="col-xs-7 text-secondary">
-          <strong class="dados-cadastrais__titulo">Sub-ramo: </strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Sub-ramo: </strong>
           Restaurante
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 text-secondary">
-          <strong class="dados-cadastrais__titulo">Tipo: </strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Tipo: </strong>
           Restaurante
         </div>
       </div>
       <div class="row margin-top dados-cadastrais__responsaveis-cabecalho">
         <div class="col-xs-6">
-          <strong class="dados-cadastrais__titulo">Responsável</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Responsável</strong>
         </div>
         <div class="col-xs-6 text-right">
-          <strong class="dados-cadastrais__titulo">Tipo</strong>
+          <strong class="dados-cadastrais__titulo panel-card__title">Tipo</strong>
         </div>
       </div>
-      <div class="row bottom-dotted dados-cadastrais__responsaveis-item">
+      <div class="row bottom-dotted panel-card__item">
         <div class="col-xs-6">MARCIO PEREIRA DE SOUZA</div>
         <div class="col-xs-6 text-right text-secondary">Representante legal</div>
       </div>
-      <div class="row bottom-dotted dados-cadastrais__responsaveis-item">
+      <div class="row bottom-dotted panel-card__item">
         <div class="col-xs-6">RODRIGO PEREIRA DE SOUZA</div>
         <div class="col-xs-6 text-right text-secondary">Sócio</div>
       </div>
-      <div class="row dados-cadastrais__responsaveis-item">
+      <div class="row panel-card__item">
         <div class="col-xs-6">ALBERTINA BATISTA LAMEIRO</div>
         <div class="col-xs-6 text-right text-secondary">Sócio</div>
       </div>

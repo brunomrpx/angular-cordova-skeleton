@@ -1,101 +1,61 @@
+.panel-heading {
+  background-color: #F5F5F5;
+  box-shadow: 0px 3px 6px 0px fade(#000, 16%);
+}
+
+.panel-heading,
+.panel-body,
+.panel-footer {
+  font-size: 13px;
+  color: #757165;
+}
+
 .dados-cadastrais {
-  .panel-heading {
-    background-color: #F5F5F5;
-    box-shadow: 0px 3px 6px 0px fade(#000, 16%);
-  }
-
-  .panel-heading,
-  .panel-body,
-  .panel-footer {
-    font-size: 13px;
-    color: #757165;
-  }
-
-  .dados-cadastrais__nome {
-    color: #312F26;
+  &__nome,
+  &__responsavel,
+  &__ultima-visita .dados-cadastrais__ultima-visita-label,
+  &__titulo {
     text-transform: uppercase;
-  }
-
-  .dados-cadastrais__status {
-    &--ativo {
-      .dados-cadastrais__status-icone {
-        color: #667B35;
-      }
-    }
-    &--inativo {
-      .dados-cadastrais__status-icone {
-        color: #FF2700;
-      }
-    }
-
-    &--cancelado {
-      .dados-cadastrais__status-icone {
-        color: #fcb600;
-      }
-    }
-
-    &--sem-primeiro-uso {
-      .dados-cadastrais__status-icone {
-        color: #757165;
-      }
-    }
-
-    &--sem-mdc {
-      .dados-cadastrais__status-icone {
-        color: #501e50;
-      }
-    }
-  }
-
-  .dados-cadastrais__responsavel {
-    text-transform: uppercase;
-    color: #757165;
-  }
-
-  .dados-cadastrais__telefone {
-    color: #757165;
-  }
-
-  .dados-cadastrais__ultima-visita {
-    .dados-cadastrais__ultima-visita-label {
-      text-transform: uppercase;
-      color: #501E50;
-    }
-  }
-
-  .dados-cadastrais__titulo {
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #2F2F2F;
-  }
-
-  .text-secondary .dados-cadastrais__titulo {
-    color: inherit;
-  }
-
-  .dados-cadastrais__endereco {
-    display: flex;
-    align-items: center;
-    margin-bottom: 14px;
-
-    .dados-cadastrais__endereco-icone {
-      font-size: 28px;
-      color: #501E50;
-      margin-right: 15px;
-    }
-
-    .dados-cadastrais__endereco-dados {
-      margin-bottom: 0;
-    }
-  }
-
-  .dados-cadastrais__responsaveis-cabecalho {
-    background-color: #F5F5F5;
-    border: 1px solid #DDDCDA;
-    padding: 10px 0;
-  }
-
-  .dados-cadastrais__responsaveis-item {
-    padding: 5px 0;
   }
 }
+
+.dados-cadastrais__ultima-visita {
+  .dados-cadastrais__ultima-visita-label {
+    color: #501E50;
+  }
+}
+
+.dados-cadastrais__titulo {
+  font-size: 14px;
+}
+
+.text-secondary .dados-cadastrais__titulo {
+  color: inherit;
+}
+
+.dados-cadastrais__endereco {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+
+  .dados-cadastrais__endereco-icone {
+    font-size: 28px;
+    color: #501E50;
+    margin-right: 15px;
+  }
+
+  .dados-cadastrais__endereco-dados {
+    margin-bottom: 0;
+  }
+}
+
+.dados-cadastrais__responsaveis-cabecalho {
+  background-color: #F5F5F5;
+  border: 1px solid #DDDCDA;
+  padding: 10px 0;
+
+  & ~ .panel-card__item {
+    padding: 10px 0;
+  }
+}
+
