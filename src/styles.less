@@ -115,6 +115,64 @@ a {
   }
 }
 
+//** Card panel
+.panel-card {
+  .panel-heading {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+
+  .panel-footer {
+    border: none;
+    font-size: 13px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .panel-body {
+    padding: 0 15px;
+  }
+
+  .panel__item {
+    padding: 5px;
+  }
+}
+
+.panel-card--purple {
+  .panel-heading,
+  .panel-footer {
+    background-color: #461946;
+  }
+
+  .panel-heading,
+  .panel-footer,
+  .panel-body {
+    color: #fff;
+  }
+
+  .panel-heading {
+    border-bottom: 1px solid #310F31;
+  }
+
+  .panel-footer {
+    border: none;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .panel-body {
+    background-color: #501E50;
+  }
+
+  .panel__item {
+    border-bottom: 1px solid #310F31;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
 //** Header divider
 .header-divider {
   font-size: 16px;
@@ -135,12 +193,15 @@ a {
 
 //** Generate Spacing Classes
 @sides: left, right, top, bottom;
-
+@spacing-default: 10px;
 .generate-spacing-classes(@i: length(@sides)) when (@i > 0) {
   @side: extract(@sides, @i);
-  .padding-@{side} { padding-@{side}: 10px };
-  .margin-@{side} { margin-@{side}: 10px };
+  .padding-@{side} { padding-@{side}: @spacing-default };
+  .margin-@{side} { margin-@{side}: @spacing-default };
   .generate-spacing-classes(@i - 1);
 }
+
+.padding { padding: @spacing-default };
+.margin { margin: @spacing-default };
 
 .generate-spacing-classes();
