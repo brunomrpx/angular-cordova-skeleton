@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { HeaderService } from './shared/header/header.service';
 import { KeycloakService } from './authentication/keycloak.service';
@@ -19,7 +20,8 @@ export class AppComponent {
     private headerService: HeaderService,
     private keycloakService: KeycloakService,
     private sessionService: SessionService,
-    private synchronizationService: SynchronizationService
+    private synchronizationService: SynchronizationService,
+    private router: Router
   ) {
     this.headerService.useSidebar = true;
     this.keycloakService.keycloak = window._keycloak;
@@ -29,6 +31,11 @@ export class AppComponent {
       setTimeout(function () {
         (document.activeElement as any).scrollIntoViewIfNeeded();
       }, 100);
+    });
+
+    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+      console.log('scroll: ', event);
+      window.scroll(0, 0);
     });
 
     this.keycloakService.keycloak.loadUserInfo().success(userInfo => {
