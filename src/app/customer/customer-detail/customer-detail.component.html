@@ -1,6 +1,8 @@
 <div class="container-fluid padding-top">
   <div class="row">
     <div class="col-xs-12">
+      <app-alert-message type="alert-warning">Data da última atualização: 10/03/2017</app-alert-message>
+      <app-alert-message *ngIf="customer.campanhaChurn" type="alert-danger">Churn</app-alert-message>
       <app-customer-dados-cadastrais [customer]="customer"></app-customer-dados-cadastrais>
       <app-customer-maquinas-instaladas [customer]="customer"></app-customer-maquinas-instaladas>
       <app-customer-faturamento-total [customer]="customer"></app-customer-faturamento-total>

@@ -9,6 +9,7 @@ import { HeaderService } from './header/header.service';
 import { MenuComponent } from './menu/menu.component';
 import { HttpService } from './http/http.service';
 import { CollapseContentComponent } from './collapse-content/collapse-content.component';
+import { AlertMessageComponent } from './alert-message/alert-message.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,15 @@ import { CollapseContentComponent } from './collapse-content/collapse-content.co
   exports: [
     SidebarComponent,
     HeaderComponent,
-    CollapseContentComponent
+    CollapseContentComponent,
+    AlertMessageComponent
   ],
   declarations: [
     SidebarComponent,
     HeaderComponent,
     MenuComponent,
-    CollapseContentComponent
+    CollapseContentComponent,
+    AlertMessageComponent
   ],
   providers: [
     SidebarService,
