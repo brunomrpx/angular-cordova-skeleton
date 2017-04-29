@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Headers } from '@angular/http';
 
 import { HeaderService } from './shared/header/header.service';
 import { KeycloakService } from './authentication/keycloak.service';
 import { SessionService, Session } from './authentication/session.service';
 import { SynchronizationService } from './synchronization/synchronization.service';
 import { HttpServiceConfig } from './shared/http/http.service';
-import { Headers } from '@angular/http';
+import { useKeycloak } from '../environments/environment';
+import { isCordovaApp } from './shared/cordova';
 
 declare const window;
 
@@ -26,19 +28,27 @@ export class AppComponent {
     this.headerService.useSidebar = true;
     this.keycloakService.keycloak = window._keycloak;
 
-    window.addEventListener('native.keyboardshow', function (e) {
-      // scroll to focused input
-      setTimeout(function () {
-        (document.activeElement as any).scrollIntoViewIfNeeded();
-      }, 100);
-    });
-
+    // scroll to top on page transition
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-      console.log('scroll: ', event);
       window.scroll(0, 0);
     });
 
-    this.keycloakService.keycloak.loadUserInfo().success(userInfo => {
+    var initPromise: any = Promise.resolve({});
+
+    if (useKeycloak) {
+      initPromise = new Promise((resolve, reject) => {
+        this.keycloakService.keycloak.loadUserInfo().success(resolve).error(reject);
+      });
+
+      // adding keycloak authorization header
+      const defaultHeaders = new Headers();
+      defaultHeaders.append('Authorization', 'Bearer ' + this.keycloakService.keycloak.token);
+      HttpServiceConfig.defaultRequestOptions = { headers: defaultHeaders };
+    }
+
+    initPromise.then(userInfo => {
+      console.log('user info: ', userInfo);
+
       // creating app session
       const session = {
         createdAt: +new Date(),
@@ -46,11 +56,6 @@ export class AppComponent {
       };
 
       this.sessionService.setSession(session);
-
-      // adding keycloak authorization header
-      const defaultHeaders = new Headers();
-      defaultHeaders.append('Authorization', 'Bearer ' + this.keycloakService.keycloak.token);
-      HttpServiceConfig.defaultRequestOptions = { headers: defaultHeaders };
 
       // synchronizing with server
       this.synchronizationService.download().subscribe(

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, transition, trigger, style, animate, HostBinding, state } from '@angular/core';
 
 import { SidebarService } from './sidebar.service';
 import { HeaderComponent } from '../header/header.component';
