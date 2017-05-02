@@ -33,7 +33,7 @@ export class AppComponent {
       window.scroll(0, 0);
     });
 
-    var initPromise: any = Promise.resolve({});
+    let initPromise: any = Promise.resolve({});
 
     if (useKeycloak) {
       initPromise = new Promise((resolve, reject) => {
