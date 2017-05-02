@@ -9,13 +9,13 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
-import { AuthenticationModule } from '../app/authentication/authentication.module';
-import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
-import { SynchronizationModule } from './synchronization/synchronization.module';
+import { AuthenticationModule } from '../app/authentication/authentication.module';
+import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module';
+import { SincrionizacaoModule } from './sincronizacao/sincronizacao.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'customer/list', pathMatch: 'full' }, // default route
+  { path: '', redirectTo: 'estabelecimento', pathMatch: 'full' }, // default route
 ];
 
 @NgModule({
@@ -30,8 +30,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     SharedModule,
     AuthenticationModule,
-    CustomerModule,
-    SynchronizationModule
+    EstabelecimentoModule,
+    SincrionizacaoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

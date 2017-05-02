@@ -5,7 +5,7 @@ import { Headers } from '@angular/http';
 import { HeaderService } from './shared/header/header.service';
 import { KeycloakService } from './authentication/keycloak.service';
 import { SessionService, Session } from './authentication/session.service';
-import { SynchronizationService } from './synchronization/synchronization.service';
+import { SincronizacaoService } from './sincronizacao/sincronizacao.service';
 import { HttpServiceConfig } from './shared/http/http.service';
 import { useKeycloak } from '../environments/environment';
 import { isCordovaApp } from './shared/cordova';
@@ -22,7 +22,7 @@ export class AppComponent {
     private headerService: HeaderService,
     private keycloakService: KeycloakService,
     private sessionService: SessionService,
-    private synchronizationService: SynchronizationService,
+    private sincronizacaoService: SincronizacaoService,
     private router: Router
   ) {
     this.headerService.useSidebar = true;
@@ -64,7 +64,7 @@ export class AppComponent {
       this.sessionService.setSession(session);
 
       // synchronizing with server
-      this.synchronizationService.download().subscribe(
+      this.sincronizacaoService.download().subscribe(
         result => console.log('synchronization success'),
         error => console.error('synchronization error: ', error)
       );

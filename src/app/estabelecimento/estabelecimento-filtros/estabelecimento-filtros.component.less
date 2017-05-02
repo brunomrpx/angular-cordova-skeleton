@@ -1,0 +1,34 @@
+@import '~bootstrap/less/variables';
+
+.filtros {
+  background-color: #CCC9BF;
+  min-height: 100%;
+  height: auto;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+
+  .filtros__header {
+    background-color: #B0AC9D;
+    width: 256px;
+    left: auto;
+    margin-top: 0;
+    // force hardware acceleration
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  .filtros__remove-all {
+    height: @navbar-height;
+    font-size: 25px;
+    color: #000;
+  }
+
+  .filtros__header-title {
+    font-size: 20px;
+  }
+
+  .filtros__content {
+    float: none;
+  }
+}

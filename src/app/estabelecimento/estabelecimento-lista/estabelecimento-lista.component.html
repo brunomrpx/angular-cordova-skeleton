@@ -1,0 +1,47 @@
+<div class="container-fluid padding-top">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="filtros-selecionados padding-bottom" *ngIf="filtrosSelecionados.length > 0">
+        <div class="label label-default"
+            *ngFor="let filtroSelecionado of filtrosSelecionados"
+            [class.label-default]="filtroSelecionado.busca || filtroSelecionado.valorCustomizado"
+            [class.label-success]="(!filtroSelecionado.busca && !filtroSelecionado.valorCustomizado) && filtroSelecionado.status === filtroStatus.ativo"
+            [class.label-primary]="(!filtroSelecionado.busca && !filtroSelecionado.valorCustomizado) && filtroSelecionado.status === filtroStatus.inativo"
+            (click)="removerFiltro(filtroSelecionado)">
+          {{ filtroSelecionado.label }}
+          <i class="fa fa-times"></i>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-7">
+              <strong>Lista de ECs</strong>
+            </div>
+            <div class="col-xs-5 text-right">
+              <strong>Última Visita</strong>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item estabelecimento" *ngFor="let estabelecimento of estabelecimentosFiltrados" [routerLink]="['/estabelecimento', estabelecimento.idEstabelecimento, 'detalhes']">
+            <div class="row">
+              <div class="col-xs-7">
+                <strong>{{ estabelecimento.nome }}</strong>
+              </div>
+              <div class="col-xs-5 text-right estabelecimento__ultima-visita">
+                {{ estabelecimento.dataUltimaVisita|date:'dd/MM/yyyy' }}
+                <i class="fa fa-chevron-right estabelecimento__ultima-visita-icone" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 estabelecimento__endereco">
+                {{ estabelecimento.cidade }} / {{ estabelecimento.bairro }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
