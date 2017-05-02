@@ -1,7 +1,7 @@
 <app-header #header>
   <div class="right-buttons">
-    <button class="btn btn-link btn-nav btn-hamburger pull-right" (click)="toggleFilter()">
-      <i class="fa {{ filterOpened ? filterIcon.opened : filterIcon.closed }}"></i>
+    <button class="btn btn-link btn-nav btn-hamburger pull-right" (click)="toggleFiltros()">
+      <i class="fa" [class.fa-search]="!filtrosAbertos" [class.fa-chevron-left]="filtrosAbertos"></i>
     </button>
   </div>
 </app-header>

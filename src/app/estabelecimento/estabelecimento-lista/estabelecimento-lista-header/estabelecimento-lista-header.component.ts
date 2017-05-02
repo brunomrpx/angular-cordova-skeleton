@@ -10,11 +10,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 export class EstabelecimentoListaHeaderComponent {
   @ViewChild('header') headerComponent: ElementRef;
 
-  private filterOpened: boolean = false;
-  private filterIcon = {
-    opened: 'fa-chevron-left',
-    closed: 'fa-search'
-  };
+  private filtrosAbertos: boolean = false;
 
   constructor(private sidebarService: SidebarService) { }
 
@@ -26,13 +22,12 @@ export class EstabelecimentoListaHeaderComponent {
         return;
       }
 
-      slideout.on('open', () => this.filterOpened = true);
-      slideout.on('close', () => this.filterOpened = false);
+      slideout.on('open', () => this.filtrosAbertos = true);
+      slideout.on('close', () => this.filtrosAbertos = false);
     });
   }
 
-  private toggleFilter() {
+  private toggleFiltros() {
     this.sidebarService.toggleMenuRight();
   }
-
 }
