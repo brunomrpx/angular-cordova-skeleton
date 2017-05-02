@@ -30,7 +30,13 @@ export class AppComponent {
 
     // scroll to top on page transition
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+      const bodyHeight = document.body.style.height;
+
+      document.body.style.height = 'auto';
+
       window.scroll(0, 0);
+
+      setTimeout(() => document.body.style.height = bodyHeight, 500);
     });
 
     let initPromise: any = Promise.resolve({});
