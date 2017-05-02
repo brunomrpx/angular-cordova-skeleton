@@ -15,6 +15,7 @@ export class EstabelecimentoDetalhesComponent {
       const busca = { idEstabelecimento: parseInt(params.id, 10) };
 
       this.estabelecimentoService.getEstabelecimentosPor(busca, false).then(estabelecimento => {
+        console.log('estabelecimento: ', estabelecimento);
         this.estabelecimento = estabelecimento;
       });
     });

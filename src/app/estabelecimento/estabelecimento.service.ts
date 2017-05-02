@@ -3,6 +3,15 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 import * as localForage from 'localforage';
 
+export interface Telefone {
+  numero: string;
+}
+
+export interface Responsavel {
+  nome: string;
+  tipo: string;
+}
+
 export interface Estabelecimento {
   idEstabelecimento: number;
   bairro: string;
@@ -16,6 +25,29 @@ export interface Estabelecimento {
   qtdMaquinasPOS: number;
   qtdMaquinasTEF: number;
   statusApp: boolean;
+  status: string;
+  UF: string;
+  CEP: string;
+  agencia: string;
+  CNPJ: string;
+  codigo: string;
+  complemento: string;
+  correntista: boolean;
+  dataCredenciamento: string;
+  emailCadastrado: string;
+  idLogCargaDados: number;
+  loginExecutivo: string;
+  tipoLogradouro: string;
+  tipo: string;
+  logradouro: string;
+  numero: number;
+  numeroECsGrupo: number;
+  ramo: string;
+  subRamo: string;
+  regional: string;
+  telefones: Telefone[];
+  responsaveis: Responsavel[];
+  segmento: string;
 }
 
 export const ESTABELECIMENTO_ID = 'estabelecimentos';

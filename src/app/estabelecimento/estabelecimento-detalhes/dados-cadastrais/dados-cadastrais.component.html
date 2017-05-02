@@ -12,8 +12,8 @@
     <div class="row">
       <div class="col-xs-12">
         <span class="dados-cadastrais__responsavel">Macio pereira de souza</span>
-        <span class="dados-cadastrais__telefone">/ (11) 41932500</span>
-        <div class="dados-cadastrais__ultima-visita">
+        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones">/ {{ estabelecimento.telefones[0].numero }}</span>
+        <div class="dados-cadastrais__ultima-visita" *ngIf="estabelecimento.dataUltimaVisita">
           <span class="dados-cadastrais__ultima-visita-label">
             <strong>Última visita:</strong>
           </span>
@@ -27,9 +27,9 @@
       <div class="col-xs-12 dados-cadastrais__endereco">
         <i class="fa fa-map-marker pull-left dados-cadastrais__endereco-icone"></i>
         <p class="dados-cadastrais__endereco-dados pull-left">
-          Rua José Bonifácio, 124, loja 8/Sala A<br>
-          Bairro SE / CEP: 1003000<br>
-          Barueri‐ São Paulo
+          {{ estabelecimento.logradouro }}, {{ estabelecimento.numero}}, {{ estabelecimento.tipoLogradouro }} {{ estabelecimento.complemento }}<br>
+          {{ estabelecimento.bairro }} / CEP: {{ estabelecimento.CEP }}<br>
+          {{ estabelecimento.cidade }} ‐ {{ estabelecimento.UF }}
         </p>
       </div>
     </div>
@@ -42,8 +42,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-8">03 - EMPRESAS II</div>
-      <div class="col-xs-4">-</div>
+      <div class="col-xs-8">{{ estabelecimento.segmento }}</div>
+      <div class="col-xs-4">{{ estabelecimento.grupo ? estabelecimento.grupo : '-' }}</div>
     </div>
     <div [hidden]="!contentOpened">
       <div class="row">
@@ -55,8 +55,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-8">Não</div>
-        <div class="col-xs-4">Indefinido</div>
+        <div class="col-xs-8">{{ estabelecimento.correntista ? 'Sim' : 'Não' }}</div>
+        <div class="col-xs-4">{{ estabelecimento.agencia ? estabelecimento.agencia : '-' }}</div>
       </div>
       <div class="row">
         <div class="col-xs-8">
@@ -67,46 +67,43 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-8">-</div>
-        <div class="col-xs-4">Indefinido</div>
+        <div class="col-xs-8">{{ estabelecimento.numeroECsGrupo }}</div>
+        <div class="col-xs-4">{{ estabelecimento.regional }}</div>
       </div>
       <div class="row">
         <div class="col-xs-5">
           <div>
             <strong class="dados-cadastrais__titulo panel-card__title">Telefones</strong>
           </div>
-          (11) 958499625<br>
-          (11) 41932500<br>
-          (11) 958499625<br>
-          ‐<br>
-          (11) 41932500<br>
-          (11) 41932500<br>
+          <div *ngFor="let telefone of estabelecimento.telefones">
+            {{ telefone.numero }}
+          </div>
         </div>
         <div class="col-xs-7">
           <div>
             <strong class="dados-cadastrais__titulo panel-card__title">Data credenciamento</strong>
           </div>
-          <div>29/12/2011</div>
+          <div>{{ estabelecimento.dataCredenciamento }}</div>
           <div class="padding-top">
             <strong class="dados-cadastrais__titulo panel-card__title">E-mail</strong>
           </div>
-          <div>habibs275@terra.com.br</div>
+          <div>{{ estabelecimento.emailCadastrado }}</div>
         </div>
       </div>
       <div class="row margin-top">
         <div class="col-xs-5 text-secondary">
           <strong class="dados-cadastrais__titulo panel-card__title">Ramo: </strong>
-          T&E
+          {{ estabelecimento.ramo }}
         </div>
         <div class="col-xs-7 text-secondary">
           <strong class="dados-cadastrais__titulo panel-card__title">Sub-ramo: </strong>
-          Restaurante
+          {{ estabelecimento.subRamo }}
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 text-secondary">
           <strong class="dados-cadastrais__titulo panel-card__title">Tipo: </strong>
-          Restaurante
+          {{ estabelecimento.tipo }}
         </div>
       </div>
       <div class="row margin-top dados-cadastrais__responsaveis-cabecalho">
@@ -117,17 +114,9 @@
           <strong class="dados-cadastrais__titulo panel-card__title">Tipo</strong>
         </div>
       </div>
-      <div class="row bottom-dotted panel-card__item">
-        <div class="col-xs-6">MARCIO PEREIRA DE SOUZA</div>
-        <div class="col-xs-6 text-right text-secondary">Representante legal</div>
-      </div>
-      <div class="row bottom-dotted panel-card__item">
-        <div class="col-xs-6">RODRIGO PEREIRA DE SOUZA</div>
-        <div class="col-xs-6 text-right text-secondary">Sócio</div>
-      </div>
-      <div class="row panel-card__item">
-        <div class="col-xs-6">ALBERTINA BATISTA LAMEIRO</div>
-        <div class="col-xs-6 text-right text-secondary">Sócio</div>
+      <div class="row bottom-dotted panel-card__item" *ngFor="let responsavel of estabelecimento.responsaveis">
+        <div class="col-xs-6">{{ responsavel.nome }}</div>
+        <div class="col-xs-6 text-right text-secondary">{{ responsavel.tipo }}</div>
       </div>
     </div>
   </div>
