@@ -17,6 +17,7 @@ import { FaturamentoMensalComponent } from './customer-detail/faturamento-mensal
 import { TaxasVigentesComponent } from './customer-detail/taxas-vigentes/taxas-vigentes.component';
 import { AntecipacaoAutomaticaComponent } from './customer-detail/antecipacao-automatica/antecipacao-automatica.component';
 import { UtilizaAppComponent } from './customer-detail/utiliza-app/utiliza-app.component';
+import { RecargaHabilitadaComponent } from './customer-detail/recarga-habilitada/recarga-habilitada.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { UtilizaAppComponent } from './customer-detail/utiliza-app/utiliza-app.c
     FaturamentoMensalComponent,
     TaxasVigentesComponent,
     AntecipacaoAutomaticaComponent,
-    UtilizaAppComponent
+    UtilizaAppComponent,
+    RecargaHabilitadaComponent
   ],
   providers: [
     CustomerService,
