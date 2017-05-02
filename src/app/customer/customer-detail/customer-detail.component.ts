@@ -27,4 +27,8 @@ export class CustomerDetailComponent {
   private toggle(toggleId) {
     this.toggleOpen[toggleId] = !this.toggleOpen[toggleId];
   }
+
+  private irParaQuestionario() {
+    // TODO: ir para questionário
+  }
 }
