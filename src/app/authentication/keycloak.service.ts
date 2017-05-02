@@ -7,7 +7,6 @@ import { isCordovaApp } from '../shared/cordova';
 declare const window;
 
 export function bootstrapWithKeycloak(appModule) {
-  let angularStarted = false;
   let keycloakJSONFile = 'assets/keycloak/';
 
   if (environment.production) {
@@ -16,45 +15,45 @@ export function bootstrapWithKeycloak(appModule) {
     keycloakJSONFile += 'keycloak.dev.json';
   }
 
-  function initKeycloak(JSONFile) {
-    console.log('keycloak json file: ', JSONFile);
-
-    window._keycloak = window.Keycloak(JSONFile);
-
-    window._keycloak.init({
-      onLoad: 'login-required'
-    }).success(authenticated => {
-      if (authenticated) {
-        window._keycloak.loadUserProfile().success(profile => {
-          // bootstrapping angular application
-          platformBrowserDynamic().bootstrapModule(appModule);
-          angularStarted = true;
-        });
-      } else {
-        window.location.reload();
-      }
-    }).error(error => {
-      console.error('keycloak init error: ', error);
-    });
-
-    window._keycloak.onAuthSuccess = function() {
-      if (!angularStarted) {
-        return;
-      }
-
-      window.location.reload();
-    };
-
-    window._keycloak.onAuthLogout = function() {
-      window.location.reload();
-    };
-  }
-
   if (isCordovaApp) {
-    window.document.addEventListener('deviceready', () => initKeycloak(keycloakJSONFile), false);
+    window.document.addEventListener('deviceready', () => initKeycloak(keycloakJSONFile, appModule), false);
   } else {
-    initKeycloak(keycloakJSONFile);
+    initKeycloak(keycloakJSONFile, appModule);
   }
+}
+
+function initKeycloak(JSONFile, appModule) {
+  console.log('keycloak json file: ', JSONFile);
+
+  let angularStarted = false;
+
+  window._keycloak = window.Keycloak(JSONFile);
+
+  window._keycloak.init({
+    onLoad: 'login-required'
+  }).success(authenticated => {
+    if (authenticated) {
+      angularStarted = true;
+
+      platformBrowserDynamic().bootstrapModule(appModule);
+
+      window._keycloak.onAuthSuccess = function () {
+        if (!angularStarted) {
+          return;
+        }
+
+        window.location.reload();
+      };
+
+      window._keycloak.onAuthLogout = function () {
+        window.location.reload();
+      };
+    } else {
+      window.location.reload();
+    }
+  }).error(error => {
+    console.error('keycloak init error: ', error);
+  });
 }
 
 @Injectable()
