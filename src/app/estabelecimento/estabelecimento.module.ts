@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+
+import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { MenuComponent } from '../shared/menu/menu.component';
+import { HeaderComponent } from '../shared/header/header.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { EstabelecimentoRoutingModule } from './estabelecimento-routing.module';
 import { EstabelecimentoListaComponent } from './estabelecimento-lista/estabelecimento-lista.component';
 import { EstabelecimentoDetalhesComponent } from './estabelecimento-detalhes/estabelecimento-detalhes.component';
 import { EstabelecimentoFiltrosComponent } from './estabelecimento-filtros/estabelecimento-filtros.component';
@@ -19,13 +23,39 @@ import { AntecipacaoAutomaticaComponent } from './estabelecimento-detalhes/antec
 import { UtilizaAppComponent } from './estabelecimento-detalhes/utiliza-app/utiliza-app.component';
 import { RecargaHabilitadaComponent } from './estabelecimento-detalhes/recarga-habilitada/recarga-habilitada.component';
 
+const routes: Routes = [
+  {
+    path: 'estabelecimento',
+    children: [
+      {
+        path: '',
+        component: SidebarComponent,
+        children: [
+          { path: '', component: EstabelecimentoListaComponent },
+          { path: '', component: MenuComponent, outlet: 'menu-left' },
+          { path: '', component: EstabelecimentoFiltrosComponent, outlet: 'menu-right' },
+          { path: '', component: EstabelecimentoListaHeaderComponent, outlet: 'header', data: { root: true } }
+        ]
+      },
+      {
+        path: ':id/detalhes',
+        component: SidebarComponent,
+        children: [
+          { path: '', component: EstabelecimentoDetalhesComponent },
+          { path: '', component: HeaderComponent, outlet: 'header', data: { title: 'Detalhes EC' } }
+        ]
+      }
+    ]
+  }
+];
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    EstabelecimentoRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [
     EstabelecimentoListaComponent,

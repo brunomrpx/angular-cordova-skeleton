@@ -8,10 +8,13 @@ import { EstabelecimentoService, Estabelecimento } from '../estabelecimento.serv
   templateUrl: './estabelecimento-detalhes.component.html'
 })
 export class EstabelecimentoDetalhesComponent {
-  private estabelecimento: Estabelecimento | {} = {};
+  private estabelecimento: Estabelecimento;
 
-  constructor(private route: ActivatedRoute, private estabelecimentoService: EstabelecimentoService) {
-    this.route.params.subscribe(params => {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private estabelecimentoService: EstabelecimentoService
+  ) {
+    this.activatedRoute.params.subscribe(params => {
       const busca = { idEstabelecimento: parseInt(params.id, 10) };
 
       this.estabelecimentoService.getEstabelecimentosPor(busca, false).then(estabelecimento => {
