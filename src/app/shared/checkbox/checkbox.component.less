@@ -1,0 +1,30 @@
+.checkbox {
+  &.checked {
+    .checkbox__icon {
+      background: url("../../../assets/images/checkbox-selected.svg");
+    }
+
+    .checkbox__label {
+      color: #501E50;
+    }
+  }
+
+  input {
+    // display: none;
+    // Better than display: none for accessibility reasons
+    position: relative;
+    z-index: -9999;
+  }
+
+  .checkbox__label {
+    padding-left: 0;
+  }
+
+  .checkbox__icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: top;
+    background: url("../../../assets/images/checkbox.svg");
+  }
+}
