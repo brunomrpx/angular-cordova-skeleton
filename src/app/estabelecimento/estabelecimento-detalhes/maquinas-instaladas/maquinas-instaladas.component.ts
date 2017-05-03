@@ -8,5 +8,5 @@ import { Estabelecimento } from '../../estabelecimento.service';
   styleUrls: ['./maquinas-instaladas.component.less']
 })
 export class MaquinasInstaladasComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
+  @Input() private estabelecimento: Estabelecimento;
 }
