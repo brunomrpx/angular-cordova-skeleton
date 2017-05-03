@@ -6,13 +6,12 @@ import * as localForage from 'localforage';
 import { HttpServiceConfig, HttpService } from '../shared/http/http.service';
 import { EstabelecimentoService, Estabelecimento } from '../estabelecimento/estabelecimento.service';
 import { API_BASE_URL } from '../app.constant';
+import { SINCRONIZACAO_STORAGE_ID } from './sincronizacao.constant';
 
 export interface SincronizacaoResponse {
   idSincronizacao: number;
   listaEstabelecimentosComerciais: Estabelecimento[];
 }
-
-export const SINCRONIZACAO_ID = 'idSincronizacao';
 
 @Injectable()
 export class SincronizacaoService {
@@ -66,10 +65,10 @@ export class SincronizacaoService {
   }
 
   private getSincronizacaoId() {
-    return localForage.getItem(SINCRONIZACAO_ID);
+    return localForage.getItem(SINCRONIZACAO_STORAGE_ID);
   }
 
   public setSincronizacaoId(sincronizacaoId: number) {
-    return localForage.setItem(SINCRONIZACAO_ID, sincronizacaoId);
+    return localForage.setItem(SINCRONIZACAO_STORAGE_ID, sincronizacaoId);
   }
 }
