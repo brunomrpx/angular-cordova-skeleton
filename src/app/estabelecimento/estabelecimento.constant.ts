@@ -1,0 +1,27 @@
+export const ESTABELECIMENTOS_STORAGE_ID = 'estabelecimentos';
+
+export const TIPO_RESPONSAVEL = {
+  SOCIO: 'SOCIO',
+  REPRESENTANTE_LEGAL: 'REPRESENTANTE_LEGAL'
+};
+
+export const TIPO_RESPONSAVEL_FORMATADO = {
+  [TIPO_RESPONSAVEL.SOCIO]: 'Sócio',
+  [TIPO_RESPONSAVEL.REPRESENTANTE_LEGAL]: 'Representante legal'
+};
+
+export const TIPO_STATUS = {
+  SEM_MDC: '01 - SEM MDC',
+  SEM_PRIMEIRO_USO: '02 - SEM 1o. USO',
+  ATIVO: '03 - ATIVO',
+  INATIVO: '04 - INATIVO',
+  CANCELADO: '05 - CANCELADO'
+};
+
+export const TIPO_STATUS_FORMATADO = {
+  [TIPO_STATUS.SEM_MDC]: 'Sem MDC',
+  [TIPO_STATUS.SEM_PRIMEIRO_USO]: 'Sem 1º uso',
+  [TIPO_STATUS.ATIVO]: 'Ativo',
+  [TIPO_STATUS.INATIVO]: 'Inativo',
+  [TIPO_STATUS.CANCELADO]: 'Cancelado'
+};

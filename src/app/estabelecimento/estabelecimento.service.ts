@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 import * as localForage from 'localforage';
 
+import { ESTABELECIMENTOS_STORAGE_ID } from './estabelecimento.constant';
+
 export interface Telefone {
   numero: string;
 }
@@ -50,8 +52,6 @@ export interface Estabelecimento {
   segmento: string;
 }
 
-export const ESTABELECIMENTO_ID = 'estabelecimentos';
-
 @Injectable()
 export class EstabelecimentoService {
   public estabelecimentos: BehaviorSubject<Estabelecimento[]> = new BehaviorSubject<Estabelecimento[]>([]);
@@ -83,11 +83,11 @@ export class EstabelecimentoService {
   }
 
   public getEstabelecimentos(): Promise<Estabelecimento[]> {
-    return localForage.getItem(ESTABELECIMENTO_ID);
+    return localForage.getItem(ESTABELECIMENTOS_STORAGE_ID);
   }
 
   public setEstabelecimentos(estabelecimentos: Estabelecimento[]): Promise<Estabelecimento[]> {
-    const promise = localForage.setItem(ESTABELECIMENTO_ID, estabelecimentos);
+    const promise = localForage.setItem(ESTABELECIMENTOS_STORAGE_ID, estabelecimentos);
     promise.then(estabelecimentosSalvos => this.estabelecimentos.next(estabelecimentosSalvos));
 
     return promise;

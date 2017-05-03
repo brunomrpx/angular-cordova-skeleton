@@ -5,14 +5,20 @@
         <strong class="dados-cadastrais__nome panel-card__title">{{ estabelecimento.nome }}</strong>
       </div>
       <div class="col-xs-3 text-center">
-        <i class="fa fa-circle dados-cadastrais__status-icone status--1"></i>
-        <p>Ativo</p>
+        <i class="fa fa-circle dados-cadastrais__status-icone"
+           [class.status--0]="estabelecimento.status === TIPO_STATUS.SEM_PRIMEIRO_USO"
+           [class.status--1]="estabelecimento.status === TIPO_STATUS.ATIVO"
+           [class.status--2]="estabelecimento.status === TIPO_STATUS.CANCELADO"
+           [class.status--3]="estabelecimento.status === TIPO_STATUS.INATIVO"
+           [class.status--4]="estabelecimento.status === TIPO_STATUS.SEM_MDC">
+        </i>
+        <p>{{ TIPO_STATUS_FORMATADO[estabelecimento.status] }}</p>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <span class="dados-cadastrais__responsavel">Macio pereira de souza</span>
-        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones">/ {{ estabelecimento.telefones[0].numero }}</span>
+        <span class="dados-cadastrais__responsavel">{{ representanteLegal?.nome }}</span>
+        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones?.length > 0">/ {{ estabelecimento.telefones[0].numero }}</span>
         <div class="dados-cadastrais__ultima-visita" *ngIf="estabelecimento.dataUltimaVisita">
           <span class="dados-cadastrais__ultima-visita-label">
             <strong>Última visita:</strong>
@@ -45,7 +51,7 @@
       <div class="col-xs-8">{{ estabelecimento.segmento }}</div>
       <div class="col-xs-4">{{ estabelecimento.grupo ? estabelecimento.grupo : '-' }}</div>
     </div>
-    <div [hidden]="!contentOpened">
+    <div [hidden]="!conteudoAberto">
       <div class="row">
         <div class="col-xs-8">
           <strong class="dados-cadastrais__titulo panel-card__title">Correntista</strong>
@@ -83,7 +89,7 @@
           <div>
             <strong class="dados-cadastrais__titulo panel-card__title">Data credenciamento</strong>
           </div>
-          <div>{{ estabelecimento.dataCredenciamento }}</div>
+          <div>{{ estabelecimento.dataCredenciamento|date:"dd/MM/yyyy" }}</div>
           <div class="padding-top">
             <strong class="dados-cadastrais__titulo panel-card__title">E-mail</strong>
           </div>
@@ -114,13 +120,13 @@
           <strong class="dados-cadastrais__titulo panel-card__title">Tipo</strong>
         </div>
       </div>
-      <div class="row bottom-dotted panel-card__item" *ngFor="let responsavel of estabelecimento.responsaveis">
-        <div class="col-xs-6">{{ responsavel.nome }}</div>
-        <div class="col-xs-6 text-right text-secondary">{{ responsavel.tipo }}</div>
+      <div class="row panel-card__item" [class.bottom-dotted]="!isLast" *ngFor="let responsavel of estabelecimento.responsaveis; let isLast = last">
+        <div class="col-xs-6 text-uppercase">{{ responsavel.nome }}</div>
+        <div class="col-xs-6 text-right text-secondary">{{ TIPO_RESPONSAVEL_FORMATADO[responsavel.tipo] }}</div>
       </div>
     </div>
   </div>
-  <div class="panel-footer" (click)="toggleContent()">
-    {{ contentOpened ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
+  <div class="panel-footer" (click)="toggleConteudo()">
+    {{ conteudoAberto ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
   </div>
 </div>
