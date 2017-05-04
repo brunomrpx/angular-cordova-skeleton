@@ -6,8 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { HeaderComponent } from '../shared/header/header.component';
 
-import { VisitaEstabelecimentoResumoComponent } from './visita-estabelecimento-resumo/visita-estabelecimento-resumo.component';
 import { SharedModule } from '../shared/shared.module';
+import { VisitaEstabelecimentoResumoComponent } from './visita-estabelecimento-resumo/visita-estabelecimento-resumo.component';
+import { VisitaEstabelecimentoService } from './visita-estabelecimento.service';
 
 const routes: Routes = [
   {
@@ -35,6 +36,9 @@ const routes: Routes = [
   ],
   declarations: [
     VisitaEstabelecimentoResumoComponent
+  ],
+  providers: [
+    VisitaEstabelecimentoService
   ]
 })
 export class VisitaEstabelecimentoModule { }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Estabelecimento, EstabelecimentoService } from '../../estabelecimento/estabelecimento.service';
 import { RESUMO_VISITA_OPCOES } from './visita-estabelecimento-resumo.constant';
+import { VisitaEstabelecimentoService } from '../visita-estabelecimento.service';
 
 interface Opcao {
   label: string;
@@ -19,7 +20,11 @@ export class VisitaEstabelecimentoResumoComponent {
   private opcoes: Opcao[] = [];
   private opcaoSelecionada: Opcao = null;
 
-  constructor(private estabelecimentoService: EstabelecimentoService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private estabelecimentoService: EstabelecimentoService,
+    private activatedRoute: ActivatedRoute,
+    private visitaEstabelecimentoService: VisitaEstabelecimentoService
+  ) {
     const opcoes = [];
 
     for (const prop in RESUMO_VISITA_OPCOES) {
@@ -50,6 +55,11 @@ export class VisitaEstabelecimentoResumoComponent {
   }
 
   private confirmarResposta() {
-    console.log('confirmar resposta: ', this.opcaoSelecionada);
+    const questionario = this.visitaEstabelecimentoService.questionario.value;
+    questionario.resumoVisita = this.opcaoSelecionada.label;
+
+    this.visitaEstabelecimentoService.questionario.next(questionario);
+
+    console.log('confirmar resposta: ', this.visitaEstabelecimentoService.questionario.value);
   }
 }
