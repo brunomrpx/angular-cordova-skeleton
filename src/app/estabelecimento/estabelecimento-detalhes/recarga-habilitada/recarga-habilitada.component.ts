@@ -9,5 +9,5 @@ import { Estabelecimento } from '../../estabelecimento.service';
   encapsulation: ViewEncapsulation.None
 })
 export class RecargaHabilitadaComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
+  @Input() private estabelecimento: Estabelecimento;
 }

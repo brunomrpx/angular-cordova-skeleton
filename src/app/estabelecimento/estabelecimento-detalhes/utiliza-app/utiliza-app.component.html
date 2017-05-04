@@ -1,23 +1,26 @@
-<div class="panel panel-default panel-card panel-card--purple">
+<div class="panel panel-default panel-card panel-card--purple" *ngIf="estabelecimento">
   <div class="panel-heading">
     <div class="row">
       <div class="col-xs-12">
-        <strong>Utiliza App</strong>
+        <strong>{{ estabelecimento.statusApp ? 'Utiliza' : 'Não utiliza' }} App</strong>
       </div>
     </div>
   </div>
   <div class="panel-body">
     <div class="row panel-card__item">
       <div class="col-xs-8">Qtd. consultas</div>
-      <div class="col-xs-4 text-right">6</div>
+      <div class="col-xs-4 text-right">{{ estabelecimento.qtdConsultasApp ? estabelecimento.qtdConsultasApp : '-' }}</div>
     </div>
     <div class="row panel-card__item">
       <div class="col-xs-8">Qtd. antecipações</div>
-      <div class="col-xs-4 text-right">0</div>
+      <div class="col-xs-4 text-right">{{ estabelecimento.qtdAntecipacoesApp ? estabelecimento.qtdAntecipacoesApp : '-' }}</div>
     </div>
     <div class="row panel-card__item">
       <div class="col-xs-8">Qtd. solicitações de serviços</div>
-      <div class="col-xs-4 text-right">1</div>
+      <div class="col-xs-4 text-right">{{ estabelecimento.qtdSolicitacoesServicosApp ? estabelecimento.qtdSolicitacoesServicosApp : '-' }}</div>
     </div>
+  </div>
+  <div class="panel-footer panel-footer--message" *ngIf="estabelecimento.msgAtencao4">
+    {{ estabelecimento.msgAtencao4 }}
   </div>
 </div>

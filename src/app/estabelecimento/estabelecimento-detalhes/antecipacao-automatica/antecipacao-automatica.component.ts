@@ -8,10 +8,10 @@ import { Estabelecimento } from '../../estabelecimento.service';
   styleUrls: ['./antecipacao-automatica.component.less']
 })
 export class AntecipacaoAutomaticaComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
-  private contentOpened = false;
+  @Input() private estabelecimento: Estabelecimento;
+  private exibirConteudo = false;
 
-  private toggleContent() {
-    this.contentOpened = !this.contentOpened;
+  private toggleConteudo() {
+    this.exibirConteudo = !this.exibirConteudo;
   }
 }

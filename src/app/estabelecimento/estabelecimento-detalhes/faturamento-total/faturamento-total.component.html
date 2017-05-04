@@ -1,12 +1,12 @@
-<div class="panel panel-default panel-card panel-card--purple dados-faturamento">
+<div class="panel panel-default panel-card panel-card--purple dados-faturament" *ngIf="estabelecimento">
   <div class="panel-heading">
     <div class="row faturamento-total padding-bottom">
       <div class="col-xs-6 faturamento-total__titulo">
         Faturamento <strong>total</strong>
       </div>
       <div class="col-xs-6 text-right dados-faturamento__valor">
-        <strong>R$ 32.980,00</strong>
-        <div class="faturamento-total__qtd-transacoes">134 transações</div>
+        <strong>R$ {{ estabelecimento.faturamentoTotal | number:'.0-0' }}</strong>
+        <div class="faturamento-total__qtd-transacoes">{{ estabelecimento.qtdTransacoesTotal }} transações</div>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
         Ticket <strong>médio</strong>
       </div>
       <div class="col-xs-6 text-right dados-faturamento__valor">
-        <strong>R$ 42,00</strong>
+        <strong>R$ {{ estabelecimento.ticketMedio | number:'.0-0' }}</strong>
       </div>
     </div>
   </div>

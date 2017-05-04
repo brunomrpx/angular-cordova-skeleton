@@ -8,5 +8,5 @@ import { Estabelecimento } from '../../estabelecimento.service';
   styleUrls: ['./faturamento-total.component.less']
 })
 export class FaturamentoTotalComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
+  @Input() private estabelecimento: Estabelecimento;
 }

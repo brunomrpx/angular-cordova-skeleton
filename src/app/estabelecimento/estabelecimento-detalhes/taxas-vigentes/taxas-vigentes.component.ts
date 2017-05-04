@@ -8,5 +8,5 @@ import { Estabelecimento } from '../../estabelecimento.service';
   styleUrls: ['./taxas-vigentes.component.less']
 })
 export class TaxasVigentesComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
+  @Input() private estabelecimento: Estabelecimento;
 }

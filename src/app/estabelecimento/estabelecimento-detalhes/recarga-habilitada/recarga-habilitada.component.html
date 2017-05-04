@@ -1,53 +1,41 @@
-<div class="panel panel-default panel-card collapsable-panel">
+<div class="panel panel-default panel-card collapsable-panel" *ngIf="estabelecimento">
   <div class="panel-heading">
     <div class="row">
       <div class="col-xs-12">
-        <strong>Possui recarga habilitada</strong>
+        <strong>{{ estabelecimento.possuiRecargaHabilitada ? 'Possui' : 'Não possui' }} recarga habilitada</strong>
       </div>
     </div>
   </div>
   <div class="panel-body">
-    <app-collapse-content>
+    <app-collapse-content *ngFor="let recarga of estabelecimento.recargas">
       <div class="title">
         <div class="row bottom-dotted collapsable-panel__title">
           <div class="col-xs-6">
-            <i class="fa fa-circle margin-right status--1"></i>
-            <strong>Claro</strong>
+            <i class="fa fa-circle margin-right" [ngClass]="{ 'status--1': recarga.status, 'status--2': !recarga.status }"></i>
+            <strong>{{ recarga.nome }}</strong>
           </div>
           <div class="col-xs-6 text-right">
-            <span class="faturamento__valor">R$ 9.971,13</span>
+            <span class="faturamento__valor">R$ {{ recarga.faturamentoTotal | number:'.0-0' }}</span>
             <i class="fa fa-ellipsis-v text-secondary collapsable-panel__toggle"></i>
           </div>
         </div>
       </div>
       <div class="content">
         <div class="collapsable-panel__content">
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-1</i></div>
-            <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
-          </div>
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-2</i></div>
-            <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
-          </div>
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-3</i></div>
-            <div class="col-xs-6 text-right faturamento__valor">R$ 9.172,57</div>
+          <div class="row collapsable-panel__item" *ngFor="let periodo of recarga.periodos">
+            <div class="col-xs-6">
+              <i class="text-capitalize">{{ periodo.dataInicio | date:'MMMM' }}</i>
+            </div>
+            <div class="col-xs-6 text-right faturamento__valor">R$ {{ periodo.valor | number:'.0-0' }}</div>
           </div>
           <div class="row header-divider">
             <div class="col-xs-12">Transações</div>
           </div>
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-1</i></div>
-            <div class="col-xs-6 text-right">70</div>
-          </div>
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-2</i></div>
-            <div class="col-xs-6 text-right">70</div>
-          </div>
-          <div class="row collapsable-panel__item">
-            <div class="col-xs-6"><i>M-3</i></div>
-            <div class="col-xs-6 text-right">70</div>
+          <div class="row collapsable-panel__item" *ngFor="let periodo of recarga.periodos">
+            <div class="col-xs-6">
+              <i class="text-capitalize">{{ periodo.dataInicio | date:'MMMM' }}</i>
+            </div>
+            <div class="col-xs-6 text-right">{{ periodo.qtdTransacoes }}</div>
           </div>
         </div>
       </div>
@@ -57,20 +45,20 @@
         Faturamentos
       </div>
     </div>
-    <div class="row padding">
+    <div class="row padding" *ngIf="estabelecimento.faturamentoTotalRecarga">
       <div class="col-xs-6">
         <strong>Atual</strong>
       </div>
-      <div class="col-xs-6 text-right">R$ 0,00</div>
+      <div class="col-xs-6 text-right">R$ {{ estabelecimento.faturamentoTotalRecarga | number:'.0-0' }}</div>
     </div>
-    <div class="row padding">
+    <div class="row padding" *ngIf="estabelecimento.limiteCreditoPreAprovadoRecarga">
       <div class="col-xs-6">
         <strong>Pré-aprovado</strong>
       </div>
-      <div class="col-xs-6 text-right">R$ 300,00</div>
+      <div class="col-xs-6 text-right">R$ {{ estabelecimento.limiteCreditoPreAprovadoRecarga | number:'.0-0' }}</div>
     </div>
   </div>
-  <div class="panel-footer margin-top panel-footer--message">
-    Cliente já trabalhou com recarga. Oportundide de reativar
+  <div class="panel-footer margin-top panel-footer--message" *ngIf="estabelecimento.msgAtencao3">
+    {{ estabelecimento.msgAtencao3 }}
   </div>
 </div>

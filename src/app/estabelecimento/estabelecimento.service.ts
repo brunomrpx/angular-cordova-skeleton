@@ -14,6 +14,40 @@ export interface Responsavel {
   tipo: string;
 }
 
+export interface Periodo {
+  dataInicio: number;
+  valor: number;
+  qtdTransacoes: number;
+}
+
+export interface Bandeira {
+  nome: string;
+  status: boolean;
+  faturamentoTotal: number;
+  qtdTransacoesTotal: number;
+  periodos: Periodo[];
+}
+
+export interface Trava {
+  tipo: string;
+  domicilio: number;
+  dataFim: number;
+}
+
+export interface CanalFaturamento {
+  nome: string;
+  qtdTransacoes: number;
+  valor: number;
+}
+
+export interface Recarga {
+  nome: string;
+  status: boolean;
+  faturamentoTotal: number;
+  qtdTransacoesTotal: number;
+  periodos: Periodo[];
+}
+
 export interface Estabelecimento {
   idEstabelecimento: number;
   bairro: string;
@@ -50,6 +84,33 @@ export interface Estabelecimento {
   telefones: Telefone[];
   responsaveis: Responsavel[];
   segmento: string;
+  ticketMedio: number;
+  faturamentoTotal: number;
+  qtdTransacoesTotal: number;
+  bandeiras: Bandeira[];
+  sow: number;
+  sowtermo: number;
+  faturamentoTermoCompromisso: number;
+  dataVigenciaTermo: number;
+  taxaVigenteDebito: number;
+  taxaVigenteCreditoAVista: number;
+  taxaVigenteCredito2A3: number;
+  taxaVigenteCredito4a6: number;
+  taxaVigenteCredito7a12: number;
+  msgAtencao1: string;
+  msgAtencao2: string;
+  msgAtencao3: string;
+  msgAtencao4: string;
+  travas: Trava[];
+  agendaDisponivel: number;
+  percentualAgendaAntecipado: number;
+  faturamentoCanais: CanalFaturamento[];
+  possuiRecargaHabilitada: boolean;
+  faturamentoTotalRecarga: number;
+  limiteCreditoPreAprovadoRecarga: number;
+  qtdConsultasApp: number;
+  qtdAntecipacoesApp: number;
+  qtdSolicitacoesServicosApp: number;
 }
 
 @Injectable()

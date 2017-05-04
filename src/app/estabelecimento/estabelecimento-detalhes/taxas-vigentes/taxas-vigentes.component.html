@@ -1,4 +1,4 @@
-<div class="panel panel-default panel-card">
+<div class="panel panel-default panel-card" *ngIf="estabelecimento">
   <div class="panel-heading">
     <div class="row panel-card__title">
       <div class="col-xs-6">
@@ -14,34 +14,34 @@
       <div class="col-xs-6">
         <strong>Débito</strong>
       </div>
-      <div class="col-xs-6 text-right">1,44%</div>
+      <div class="col-xs-6 text-right">{{ estabelecimento.taxaVigenteDebito | number }} %</div>
     </div>
     <div class="row bottom-dotted padding-bottom padding-top">
       <div class="col-xs-6">
         <strong>Crédito a vista</strong>
       </div>
-      <div class="col-xs-6 text-right">2,05%</div>
+      <div class="col-xs-6 text-right">{{ estabelecimento.taxaVigenteCreditoAVista | number }} %</div>
     </div>
     <div class="row bottom-dotted padding-bottom padding-top">
       <div class="col-xs-6">
         <strong>Crédito 2 a 3</strong>
       </div>
-      <div class="col-xs-6 text-right">4,20%</div>
+      <div class="col-xs-6 text-right">{{ estabelecimento.taxaVigenteCredito2A3 | number }}%</div>
     </div>
     <div class="row bottom-dotted padding-bottom padding-top">
       <div class="col-xs-6">
         <strong>Crédito 4 a 6</strong>
       </div>
-      <div class="col-xs-6 text-right">4,20%</div>
+      <div class="col-xs-6 text-right">{{ estabelecimento.taxaVigenteCredito4a6 | number }} %</div>
     </div>
     <div class="row padding-bottom padding-top">
       <div class="col-xs-6">
         <strong>Crédito 7 a 12</strong>
       </div>
-      <div class="col-xs-6 text-right">5,05%</div>
+      <div class="col-xs-6 text-right">{{ estabelecimento.taxaVigenteCredito7a12 | number }} %</div>
     </div>
   </div>
-  <div class="panel-footer panel-footer--message">
-    <i>Queda no faturamento superior a 40%. Baixo faturamento por dia. Pode estar concentrando c/ o concorrente.</i>
+  <div class="panel-footer panel-footer--message" *ngIf="estabelecimento.msgAtencao1">
+    <i>{{ estabelecimento.msgAtencao1 }}</i>
   </div>
 </div>

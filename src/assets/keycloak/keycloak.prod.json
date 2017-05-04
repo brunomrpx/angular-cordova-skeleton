@@ -1,6 +1,6 @@
 {
   "realm": "getnet-target",
-  "auth-server-url": "http://192.168.0.97:3500/auth",
+  "auth-server-url": "http://192.168.0.170:3500/auth",
   "ssl-required": "external",
   "resource": "mobile-app",
   "public-client": true

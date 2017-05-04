@@ -8,5 +8,5 @@ import { Estabelecimento } from '../../estabelecimento.service';
   styleUrls: ['./utiliza-app.component.less']
 })
 export class UtilizaAppComponent {
-  @Input() private estabelecimento: Estabelecimento | {} = {};
+  @Input() private estabelecimento: Estabelecimento;
 }
