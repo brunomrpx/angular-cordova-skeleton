@@ -1,0 +1,19 @@
+<div class="container" *ngIf="estabelecimento">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="estabelecimento__nome">{{ estabelecimento.nome }}</div>
+      <strong class="resumo-visita__titulo">1. Resumo da visita:</strong>
+      <ul class="list-unstyled">
+        <li class="margin-bottom" *ngFor="let opcao of opcoes">
+          <button class="btn btn-block text-left opcao" [class.btn-default]="opcaoSelecionada !== opcao" [class.btn-success]="opcaoSelecionada === opcao" (click)="toggleOpcao(opcao)">
+            {{ opcao.label }}
+            <i class="fa fa-check pull-right opcao__icone" *ngIf="opcaoSelecionada == opcao"></i>
+          </button>
+        </li>
+      </ul>
+      <div class="text-center margin-top">
+        <button class="btn btn-success confirmar-resposta" [disabled]="opcaoSelecionada === null" (click)="confirmarResposta()">Confirmar resposta</button>
+      </div>
+    </div>
+  </div>
+</div>

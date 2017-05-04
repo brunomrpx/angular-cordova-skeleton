@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { EstabelecimentoService, Estabelecimento } from '../estabelecimento.service';
 
@@ -12,7 +12,8 @@ export class EstabelecimentoDetalhesComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private estabelecimentoService: EstabelecimentoService
+    private estabelecimentoService: EstabelecimentoService,
+    private router: Router
   ) {
     this.activatedRoute.params.subscribe(params => {
       const busca = { idEstabelecimento: parseInt(params.id, 10) };
@@ -25,6 +26,7 @@ export class EstabelecimentoDetalhesComponent {
   }
 
   private irParaQuestionario() {
-    // TODO: ir para questionário
+    const url = `/visita-estabelecimento/${this.estabelecimento.idEstabelecimento}/resumo`;
+    this.router.navigateByUrl(url);
   }
 }

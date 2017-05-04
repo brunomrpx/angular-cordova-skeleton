@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthenticationModule } from '../app/authentication/authentication.module';
 import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module';
 import { SincrionizacaoModule } from './sincronizacao/sincronizacao.module';
+import { VisitaEstabelecimentoModule } from './visita-estabelecimento/visita-estabelecimento.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'estabelecimento', pathMatch: 'full' }, // default route
@@ -31,7 +32,8 @@ const routes: Routes = [
     SharedModule,
     AuthenticationModule,
     EstabelecimentoModule,
-    SincrionizacaoModule
+    SincrionizacaoModule,
+    VisitaEstabelecimentoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

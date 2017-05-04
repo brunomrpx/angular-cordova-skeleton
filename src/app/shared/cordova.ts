@@ -1,4 +1,4 @@
-let _isCordova = null
+let _isCordova = null;
 
 function isCordovaAppFn() {
   if (_isCordova === null) {
