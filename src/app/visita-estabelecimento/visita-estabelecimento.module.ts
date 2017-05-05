@@ -9,6 +9,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { VisitaEstabelecimentoResumoComponent } from './visita-estabelecimento-resumo/visita-estabelecimento-resumo.component';
 import { VisitaEstabelecimentoService } from './visita-estabelecimento.service';
+import { VisitaEstabelecimentoQuestionarioComponent } from './visita-estabelecimento-questionario/visita-estabelecimento-questionario.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,14 @@ const routes: Routes = [
         children: [
           { path: '', component: VisitaEstabelecimentoResumoComponent },
           { path: '', component: HeaderComponent, outlet: 'header', data: { title: 'Questionário' } }
+        ]
+      },
+      {
+        path: 'questionario',
+        component: SidebarComponent,
+        children: [
+          { path: '', component: VisitaEstabelecimentoQuestionarioComponent },
+          { path: '', component: HeaderComponent, outlet: 'header' }
         ]
       }
     ]
@@ -35,7 +44,8 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    VisitaEstabelecimentoResumoComponent
+    VisitaEstabelecimentoResumoComponent,
+    VisitaEstabelecimentoQuestionarioComponent
   ],
   providers: [
     VisitaEstabelecimentoService

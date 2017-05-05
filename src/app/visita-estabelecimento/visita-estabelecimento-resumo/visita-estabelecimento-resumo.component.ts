@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Estabelecimento, EstabelecimentoService } from '../../estabelecimento/estabelecimento.service';
 import { RESUMO_VISITA_OPCOES } from './visita-estabelecimento-resumo.constant';
 import { VisitaEstabelecimentoService } from '../visita-estabelecimento.service';
+import { Subscription } from 'rxjs/Rx';
 
 interface Opcao {
   label: string;
@@ -14,18 +15,20 @@ interface Opcao {
   templateUrl: './visita-estabelecimento-resumo.component.html',
   styleUrls: ['./visita-estabelecimento-resumo.component.less']
 })
-export class VisitaEstabelecimentoResumoComponent {
+export class VisitaEstabelecimentoResumoComponent implements OnDestroy {
   private estabelecimento: Estabelecimento;
-
   private opcoes: Opcao[] = [];
   private opcaoSelecionada: Opcao = null;
+  private estabelecimentoServiceSubscription: Subscription;
 
   constructor(
     private estabelecimentoService: EstabelecimentoService,
     private activatedRoute: ActivatedRoute,
-    private visitaEstabelecimentoService: VisitaEstabelecimentoService
+    private visitaEstabelecimentoService: VisitaEstabelecimentoService,
+    private router: Router
   ) {
     const opcoes = [];
+    const questionario = this.visitaEstabelecimentoService.questionario.value;
 
     for (const prop in RESUMO_VISITA_OPCOES) {
       opcoes.push({
@@ -36,9 +39,17 @@ export class VisitaEstabelecimentoResumoComponent {
 
     this.opcoes = opcoes;
 
-    this.estabelecimentoService.estabelecimentoSelecionado.subscribe(estabelecimento => {
+    if (questionario && questionario.resumoVisita) {
+      this.opcaoSelecionada = this.opcoes.find(o => o.label === questionario.resumoVisita);
+    }
+
+    this.estabelecimentoServiceSubscription = this.estabelecimentoService.estabelecimentoSelecionado.subscribe(estabelecimento => {
       this.estabelecimento = estabelecimento;
     });
+  }
+
+  public ngOnDestroy() {
+    this.estabelecimentoServiceSubscription.unsubscribe();
   }
 
   private toggleOpcao(opcao: Opcao) {
@@ -56,6 +67,6 @@ export class VisitaEstabelecimentoResumoComponent {
 
     this.visitaEstabelecimentoService.questionario.next(questionario);
 
-    console.log('confirmar resposta: ', this.visitaEstabelecimentoService.questionario.value);
+    this.router.navigate(['../questionario'], { relativeTo: this.activatedRoute.parent });
   }
 }

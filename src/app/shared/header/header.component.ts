@@ -19,6 +19,7 @@ export class HeaderComponent {
 
   private showBackButton: boolean = false;
   private dataSubscription: Subscription;
+  private titleSubscription: Subscription;
 
   constructor(
     private headerService: HeaderService,
@@ -33,6 +34,14 @@ export class HeaderComponent {
         this.title = data.title;
       }
     });
+
+    this.titleSubscription = this.headerService.title.subscribe(title => {
+      if (title === null) {
+        return;
+      }
+
+      this.title = title;
+    });
   }
 
   private goBack() {
@@ -45,5 +54,6 @@ export class HeaderComponent {
 
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
+    this.titleSubscription.unsubscribe();
   }
 }
