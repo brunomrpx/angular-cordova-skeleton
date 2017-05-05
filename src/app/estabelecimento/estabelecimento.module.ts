@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'estabelecimento',
     children: [
       {
-        path: '',
+        path: 'lista',
         component: SidebarComponent,
         children: [
           { path: '', component: EstabelecimentoListaComponent },

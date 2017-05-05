@@ -15,7 +15,7 @@ import { SincrionizacaoModule } from './sincronizacao/sincronizacao.module';
 import { VisitaEstabelecimentoModule } from './visita-estabelecimento/visita-estabelecimento.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'estabelecimento', pathMatch: 'full' }, // default route
+  { path: '', redirectTo: 'estabelecimento/lista', pathMatch: 'full' }, // default route
 ];
 
 @NgModule({

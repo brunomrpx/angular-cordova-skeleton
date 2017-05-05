@@ -116,6 +116,7 @@ export interface Estabelecimento {
 @Injectable()
 export class EstabelecimentoService {
   public estabelecimentos: BehaviorSubject<Estabelecimento[]> = new BehaviorSubject<Estabelecimento[]>([]);
+  public estabelecimentoSelecionado: BehaviorSubject<Estabelecimento> = new BehaviorSubject<Estabelecimento>(null);
 
   constructor() {
     this.getEstabelecimentos().then(estabelecimentos => this.estabelecimentos.next(estabelecimentos));

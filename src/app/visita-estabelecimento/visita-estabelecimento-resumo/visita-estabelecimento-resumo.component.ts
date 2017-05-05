@@ -36,12 +36,8 @@ export class VisitaEstabelecimentoResumoComponent {
 
     this.opcoes = opcoes;
 
-    this.activatedRoute.params.subscribe(params => {
-      const busca = { idEstabelecimento: parseInt(params.id, 10) };
-
-      this.estabelecimentoService.getEstabelecimentosPor(busca, false).then(estabelecimento => {
-        this.estabelecimento = estabelecimento;
-      });
+    this.estabelecimentoService.estabelecimentoSelecionado.subscribe(estabelecimento => {
+      this.estabelecimento = estabelecimento;
     });
   }
 
