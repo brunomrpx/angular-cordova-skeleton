@@ -1,4 +1,4 @@
-<div [class.content-opened]="contentOpened">
+<div [class.content-opened]="contentOpened" [class.reverse-content]="reverseContent">
   <div (click)="toggleContent($event)">
     <ng-content select=".title"></ng-content>
   </div>

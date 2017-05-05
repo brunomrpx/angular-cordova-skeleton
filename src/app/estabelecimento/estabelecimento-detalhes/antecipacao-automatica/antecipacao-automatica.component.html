@@ -24,41 +24,50 @@
         <div class="col-xs-6 text-right">{{ trava.dataFim | date:"dd/MM/yyyy" }}</div>
       </div>
     </div>
-    <div [hidden]="!exibirConteudo">
-      <div class="row header-divider header-divider--2">
-        <div class="col-xs-12">Antecipações</div>
-      </div>
-      <div class="row panel-card__item">
-        <div class="col-xs-6">
-          <strong>Agenda disponível</strong>
-        </div>
-        <div class="col-xs-6 text-right">
-          <span *ngIf="estabelecimento.agendaDisponivel">{{ estabelecimento.agendaDisponivel | number:'.0-0' }}</span>
-          <span *ngIf="!estabelecimento.agendaDisponivel">-</span>
+    <app-collapse-content #collapseContent reverseContent="true">
+      <div class="title">
+        <div class="row header-divider header-divider--3 margin-top-0">
+          <div class="col-xs-12">
+            {{ collapseContent.contentOpened ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
+          </div>
         </div>
       </div>
-      <div class="row bottom-dotted panel-card__item">
-        <div class="col-xs-6">
-          <strong>Agenda antecipado</strong>
+      <div class="content">
+        <div class="row header-divider header-divider--2">
+          <div class="col-xs-12">Antecipações</div>
         </div>
-        <div class="col-xs-6 text-right">
-          <span *ngIf="estabelecimento.percentualAgendaAntecipado">{{ estabelecimento.percentualAgendaAntecipado | number }}</span>
-          <span *ngIf="!estabelecimento.percentualAgendaAntecipado">-</span>
-          %
+        <div class="row panel-card__item">
+          <div class="col-xs-6">
+            <strong>Agenda disponível</strong>
+          </div>
+          <div class="col-xs-6 text-right">
+            <span *ngIf="estabelecimento.agendaDisponivel">{{ estabelecimento.agendaDisponivel | number:'.0-0' }}</span>
+            <span *ngIf="!estabelecimento.agendaDisponivel">-</span>
+          </div>
+        </div>
+        <div class="row bottom-dotted panel-card__item">
+          <div class="col-xs-6">
+            <strong>Agenda antecipado</strong>
+          </div>
+          <div class="col-xs-6 text-right">
+            <span *ngIf="estabelecimento.percentualAgendaAntecipado">{{ estabelecimento.percentualAgendaAntecipado | number }}</span>
+            <span *ngIf="!estabelecimento.percentualAgendaAntecipado">-</span>
+            %
+          </div>
+        </div>
+        <div class="row bottom-dotted panel-card__item" *ngFor="let canalFaturamento of estabelecimento.faturamentoCanais">
+          <div class="col-xs-6">
+            <strong>{{ canalFaturamento.nome }}</strong>
+          </div>
+          <div class="col-xs-6 text-right">
+            R$ {{ canalFaturamento.valor | number:".0-0" }}
+            <div>{{ canalFaturamento.qtdTransacoes }} transações</div>
+          </div>
         </div>
       </div>
-      <div class="row bottom-dotted panel-card__item" *ngFor="let canalFaturamento of estabelecimento.faturamentoCanais">
-        <div class="col-xs-6">
-          <strong>{{ canalFaturamento.nome }}</strong>
-        </div>
-        <div class="col-xs-6 text-right">
-          R$ {{ canalFaturamento.valor | number:".0-0" }}
-          <div>{{ canalFaturamento.qtdTransacoes }} transações</div>
-        </div>
-      </div>
-    </div>
+    </app-collapse-content>
   </div>
-  <div class="panel-footer" (click)="toggleConteudo()">
-    {{ exibirConteudo ? 'Esconder' : 'Ver' }} <strong>detalhes</strong>
+  <div class="panel-footer panel-footer--message" *ngIf="estabelecimento.msgAtencao2">
+    <i>{{ estabelecimento.msgAtencao2 }}</i>
   </div>
 </div>

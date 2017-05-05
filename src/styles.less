@@ -203,6 +203,13 @@ a {
     padding: 15px 0;
     margin-top: 0;
   }
+
+  &--3 {
+    background-color: #99938C;
+    font-size: 13px;
+    padding: 8px 0;
+    font-weight: initial
+  }
 }
 
 //** Float action button
@@ -233,10 +240,25 @@ a {
 //** Generate Spacing Classes
 @sides: left, right, top, bottom;
 @spacing-default: 10px;
+@reset-space: 0px;
+
 .generate-spacing-classes(@i: length(@sides)) when (@i > 0) {
   @side: extract(@sides, @i);
-  .padding-@{side} { padding-@{side}: @spacing-default };
-  .margin-@{side} { margin-@{side}: @spacing-default };
+
+  .padding {
+    &-@{side} {
+      padding-@{side}: @spacing-default;
+      &-0 { padding-@{side}: @reset-space };
+    };
+  };
+
+  .margin {
+    &-@{side} {
+      margin-@{side}: @spacing-default;
+      &-0 { margin-@{side}: @reset-space };
+    };
+  };
+
   .generate-spacing-classes(@i - 1);
 }
 

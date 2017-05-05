@@ -9,9 +9,4 @@ import { Estabelecimento } from '../../estabelecimento.service';
 })
 export class AntecipacaoAutomaticaComponent {
   @Input() private estabelecimento: Estabelecimento;
-  private exibirConteudo = false;
-
-  private toggleConteudo() {
-    this.exibirConteudo = !this.exibirConteudo;
-  }
 }
