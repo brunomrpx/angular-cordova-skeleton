@@ -20,12 +20,8 @@
         </div>
       </div>
       <div class="row bottom-dotted panel-card__item">
-        <div class="col-xs-6">Master</div>
-        <div class="col-xs-6 text-right">20/08/2018</div>
-      </div>
-      <div class="row panel-card__item">
-        <div class="col-xs-6">Visa</div>
-        <div class="col-xs-6 text-right">20/08/2018</div>
+        <div class="col-xs-6">{{ trava.tipo }}</div>
+        <div class="col-xs-6 text-right">{{ trava.dataFim | date:"dd/MM/yyyy" }}</div>
       </div>
     </div>
     <div [hidden]="!exibirConteudo">
