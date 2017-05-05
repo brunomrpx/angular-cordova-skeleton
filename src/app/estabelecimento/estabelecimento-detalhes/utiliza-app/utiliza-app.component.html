@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" *ngIf="estabelecimento.statusApp">
     <div class="row panel-card__item">
       <div class="col-xs-8">Qtd. consultas</div>
       <div class="col-xs-4 text-right">{{ estabelecimento.qtdConsultasApp ? estabelecimento.qtdConsultasApp : '-' }}</div>
