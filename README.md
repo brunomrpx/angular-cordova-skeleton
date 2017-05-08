@@ -1,4 +1,4 @@
-# Plataforma Comercial
+# Plataforma Comercial - Frontend
 
 ## Development server
 
