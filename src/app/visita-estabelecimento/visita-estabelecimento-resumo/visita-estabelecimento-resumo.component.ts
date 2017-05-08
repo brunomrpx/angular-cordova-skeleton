@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { Estabelecimento, EstabelecimentoService } from '../../estabelecimento/estabelecimento.service';
 import { RESUMO_VISITA_OPCOES } from './visita-estabelecimento-resumo.constant';
@@ -67,6 +67,6 @@ export class VisitaEstabelecimentoResumoComponent implements OnDestroy {
 
     this.visitaEstabelecimentoService.questionario.next(questionario);
 
-    this.router.navigate(['../questionario'], { relativeTo: this.activatedRoute.parent });
+    // this.router.navigate(['../questionario'], { relativeTo: this.activatedRoute.parent });
   }
 }
