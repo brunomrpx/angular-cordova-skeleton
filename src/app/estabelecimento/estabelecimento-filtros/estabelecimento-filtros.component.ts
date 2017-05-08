@@ -21,7 +21,8 @@ export class EstabelecimentoFiltrosComponent {
       antecipacaoAutomatica: [FiltroStatus.naoAplicado],
       limiteRecarga: [FiltroStatus.naoAplicado],
       campanhaChurn: [FiltroStatus.naoAplicado],
-      quantidadeMaquinas: [FiltroStatus.naoAplicado]
+      quantidadeMaquinas: [FiltroStatus.naoAplicado],
+      agendaDisponivel: [FiltroStatus.naoAplicado]
     });
 
     this.formGroup.valueChanges.subscribe(this.atualizarFiltros.bind(this));

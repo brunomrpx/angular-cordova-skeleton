@@ -18,7 +18,8 @@
     <div class="row">
       <div class="col-xs-12">
         <span class="dados-cadastrais__responsavel">{{ representanteLegal?.nome }}</span>
-        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones?.length > 0">/ {{ estabelecimento.telefones[0].numero }}</span>
+        <span *ngIf="representanteLegal?.nome && estabelecimento.telefones?.length > 0"> / </span>
+        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones?.length > 0"> {{ estabelecimento.telefones[0].numero }}</span>
         <div class="dados-cadastrais__ultima-visita" *ngIf="estabelecimento.dataUltimaVisita">
           <span class="dados-cadastrais__ultima-visita-label">
             <strong>Última visita:</strong>

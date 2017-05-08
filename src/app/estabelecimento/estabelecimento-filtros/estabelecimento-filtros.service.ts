@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Estabelecimento } from '../estabelecimento.service';
@@ -11,6 +12,7 @@ export interface Filtros {
   limiteRecarga: Filtro;
   campanhaChurn: Filtro;
   quantidadeMaquinas: Filtro;
+  agendaDisponivel: Filtro;
 }
 
 export interface Filtro {
@@ -72,7 +74,16 @@ export class EstabelecimentoFiltrosService {
       valorCustomizado: true,
       status: FiltroStatus.naoAplicado
     },
+    agendaDisponivel: {
+      label: 'Agenda disponível',
+      valor: null,
+      status: FiltroStatus.naoAplicado
+    }
   });
+
+  private camposData: string[] = ['dataUltimaVisita', 'dataVigenciaTermo', 'dataCredenciamento'];
+
+  constructor(private datePipe: DatePipe) {}
 
   public removerFiltros(filtros: string[] | string) {
     const valorFiltros = this.filtros.value;
@@ -107,11 +118,12 @@ export class EstabelecimentoFiltrosService {
       this.filtrarPorCampanhaChurn,
       this.filtrarPorQuantidadeMaquinas,
       this.filtrarPorGrupo,
+      this.filtrarPorAgendaDisponivel
     ];
 
     const estabelecimentosFiltrados = estabelecimentos.filter(estabelecimento => {
       for (const prop in metodosFiltro) {
-        if (!metodosFiltro[prop](estabelecimento, filtros)) {
+        if (!metodosFiltro[prop].bind(this)(estabelecimento, filtros)) {
           return false;
         }
       }
@@ -123,11 +135,24 @@ export class EstabelecimentoFiltrosService {
   }
 
   private filtrarPorPesquisaRapida(estabelecimento: Estabelecimento, filtros: Filtros) {
-    let valorProp;
+    let valorProp, data;
     const pesquisaRapida = filtros.pesquisaRapida.valor.toLowerCase();
 
     for (const prop in estabelecimento) {
       valorProp = estabelecimento[prop];
+
+      if (this.camposData.indexOf(prop) >= 0) {
+        data = this.datePipe.transform(valorProp, 'dd/MM/yyyy');
+
+        if (data === null) {
+          continue;
+        }
+
+        if (data.indexOf(pesquisaRapida) >= 0) {
+          return true;
+        }
+      }
+
       if (typeof valorProp === 'string' && (valorProp.toLowerCase().indexOf(pesquisaRapida) >= 0)) {
         return true;
       }
@@ -203,5 +228,19 @@ export class EstabelecimentoFiltrosService {
     }
 
     return totalMaquinas >= valorQuantidadeMaquinas;
+  }
+
+  private filtrarPorAgendaDisponivel(estabelecimento: Estabelecimento, filtros: Filtros) {
+    const agendaDisponivelStatus = filtros.agendaDisponivel.status;
+
+    if (agendaDisponivelStatus === FiltroStatus.naoAplicado) {
+      return true;
+    }
+
+    if (agendaDisponivelStatus === FiltroStatus.ativo) {
+      return estabelecimento.agendaDisponivel > 0;
+    }
+
+    return (estabelecimento.agendaDisponivel === null || estabelecimento.agendaDisponivel === 0);
   }
 }
