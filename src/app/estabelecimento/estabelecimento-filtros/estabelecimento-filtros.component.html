@@ -17,7 +17,7 @@
     <div class="form-group">
       <label for="utiliza-app">Utiliza APP</label>
       <select class="form-control" id="utiliza-app" [formControl]="formGroup.controls['utilizaApp']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option [value]="filtroStatus.ativo">Sim</option>
         <option [value]="filtroStatus.inativo">Não</option>
       </select>
@@ -25,7 +25,7 @@
     <div class="form-group">
       <label for="antecipacao-automatica">Antecipação automática</label>
       <select class="form-control" id="antecipacao-automatica" [formControl]="formGroup.controls['antecipacaoAutomatica']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option [value]="filtroStatus.ativo">Possui</option>
         <option [value]="filtroStatus.inativo">Não possui</option>
       </select>
@@ -33,7 +33,7 @@
     <div class="form-group">
       <label for="utiliza-app">Agenda disponível</label>
       <select class="form-control" id="utiliza-app" [formControl]="formGroup.controls['agendaDisponivel']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option [value]="filtroStatus.ativo">Sim</option>
         <option [value]="filtroStatus.inativo">Não</option>
       </select>
@@ -41,7 +41,7 @@
     <div class="form-group">
       <label for="limite-recarga">Limite de recarga</label>
       <select class="form-control" id="limite-recarga" [formControl]="formGroup.controls['limiteRecarga']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option [value]="filtroStatus.ativo">Possui</option>
         <option [value]="filtroStatus.inativo">Não possui</option>
       </select>
@@ -49,7 +49,7 @@
     <div class="form-group">
       <label for="campanha-churn">Campanha churn</label>
       <select class="form-control" id="campanha-churn" [formControl]="formGroup.controls['campanhaChurn']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option [value]="filtroStatus.ativo">Sim</option>
         <option [value]="filtroStatus.inativo">Não</option>
       </select>
@@ -57,7 +57,7 @@
     <div class="form-group">
       <label for="quantidade-maquinas">Quantidade de máquinas</label>
       <select class="form-control" id="quantidade-maquinas"  [formControl]="formGroup.controls['quantidadeMaquinas']">
-        <option [value]="filtroStatus.naoAplicado">N/A</option>
+        <option [value]="filtroStatus.naoAplicado">Todos</option>
         <option value="1 máquina">1 máquina</option>
         <option value="2 máquinas">2 máquinas</option>
         <option value="3 máquinas">3 máquinas</option>
