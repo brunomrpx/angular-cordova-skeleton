@@ -13,6 +13,7 @@ import { CollapseContentComponent } from './collapse-content/collapse-content.co
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { FABComponent } from './fab/fab.component';
+import { ArrayService } from './array.service';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { FABComponent } from './fab/fab.component';
   providers: [
     SidebarService,
     HeaderService,
-    HttpService
+    HttpService,
+    ArrayService
   ]
 })
 export class CoreModule { }
