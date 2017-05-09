@@ -2,18 +2,20 @@
   <div class="row">
     <div class="col-xs-12">
       <app-alert-message type="alert-warning">Data da última atualização: 10/03/2017</app-alert-message>
+      <app-alert-message type="alert-warning">{{ estabelecimento?.possuiAntecipacaoAutomatica ? 'Possui' : 'Não possui' }} antecipação automática.</app-alert-message>
       <app-alert-message *ngIf="estabelecimento?.campanhaChurn" type="alert-danger">Churn</app-alert-message>
       <app-estabelecimento-dados-cadastrais [estabelecimento]="estabelecimento"></app-estabelecimento-dados-cadastrais>
       <app-estabelecimento-maquinas-instaladas [estabelecimento]="estabelecimento"></app-estabelecimento-maquinas-instaladas>
       <app-estabelecimento-faturamento-total [estabelecimento]="estabelecimento"></app-estabelecimento-faturamento-total>
       <app-estabelecimento-faturamento-mensal [estabelecimento]="estabelecimento"></app-estabelecimento-faturamento-mensal>
       <app-estabelecimento-taxas-vigentes [estabelecimento]="estabelecimento"></app-estabelecimento-taxas-vigentes>
+      <app-estabelecimento-travas [estabelecimento]="estabelecimento"></app-estabelecimento-travas>
       <app-estabelecimento-antecipacao-automatica [estabelecimento]="estabelecimento"></app-estabelecimento-antecipacao-automatica>
       <app-estabelecimento-recarga-habilitada [estabelecimento]="estabelecimento"></app-estabelecimento-recarga-habilitada>
       <app-estabelecimento-utiliza-app [estabelecimento]="estabelecimento"></app-estabelecimento-utiliza-app>
-      <div class="fab bg-secondary" (click)="irParaQuestionario($event)">
-        <i class="fa fa-plus fab__icon"></i>
-      </div>
+      <app-fab (click)="irParaQuestionario($event)">
+        <i class="fa fa-list"></i>
+      </app-fab>
     </div>
   </div>
 </div>

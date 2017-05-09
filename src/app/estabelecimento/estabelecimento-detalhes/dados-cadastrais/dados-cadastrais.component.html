@@ -1,11 +1,11 @@
-<div class="panel panel-default panel-card dados-cadastrais" *ngIf="estabelecimento">
+<div class="panel panel-default panel-card dados-cadastrais" [class.content-opened]="collapseContent.contentOpened" *ngIf="estabelecimento">
   <div class="panel-heading">
     <div class="row">
       <div class="col-xs-9">
-        <strong class="dados-cadastrais__nome panel-card__title">{{ estabelecimento.nome }}</strong>
+        <strong class="panel-card__title">{{ estabelecimento.nome }}</strong>
       </div>
       <div class="col-xs-3 text-center">
-        <i class="fa fa-circle dados-cadastrais__status-icone"
+        <i class="fa fa-circle"
            [class.status--0]="estabelecimento.status === TIPO_STATUS.SEM_PRIMEIRO_USO"
            [class.status--1]="estabelecimento.status === TIPO_STATUS.ATIVO"
            [class.status--2]="estabelecimento.status === TIPO_STATUS.CANCELADO"
@@ -16,16 +16,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <span class="dados-cadastrais__responsavel">{{ representanteLegal?.nome }}</span>
+      <div class="col-xs-12 margin-bottom">
+        <span class="">{{ representanteLegal?.nome }}</span>
         <span *ngIf="representanteLegal?.nome && estabelecimento.telefones?.length > 0"> / </span>
-        <span class="dados-cadastrais__telefone" *ngIf="estabelecimento.telefones?.length > 0"> {{ estabelecimento.telefones[0].numero }}</span>
+        <span class="" *ngIf="estabelecimento.telefones?.length > 0"> {{ estabelecimento.telefones[0].numero }}</span>
         <div class="dados-cadastrais__ultima-visita" *ngIf="estabelecimento.dataUltimaVisita">
-          <span class="dados-cadastrais__ultima-visita-label">
+          <span class="dados-cadastrais__ultima-visita-label text-uppercase">
             <strong>Última visita:</strong>
           </span>
           {{ estabelecimento.dataUltimaVisita|date:"dd/MM/yyyy" }}
         </div>
+      </div>
+      <div class="col-xs-6 ">
+        <strong class="dados-cadastrais__titulo panel-card__title">CPNJ:</strong> {{ estabelecimento.CNPJ }}
+      </div>
+      <div class="col-xs-6">
+        <strong class="dados-cadastrais__titulo panel-card__title">Código:</strong> {{ estabelecimento.codigo }}
       </div>
     </div>
   </div>
@@ -42,15 +48,17 @@
     </div>
     <div class="row">
       <div class="col-xs-8">
-        <strong class="dados-cadastrais__titulo panel-card__title">Segmentos</strong>
+        <div class="dados-cadastrais__titulo panel-card__title">
+          <strong>Segmentos:</strong>
+        </div>
+        {{ estabelecimento.segmento }}
       </div>
       <div class="col-xs-4">
-        <strong class="dados-cadastrais__titulo panel-card__title">Grupo</strong>
+        <div class="dados-cadastrais__titulo panel-card__title">
+          <strong>Grupo:</strong>
+        </div>
+        {{ estabelecimento.grupo ? estabelecimento.grupo : '-' }}
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-8">{{ estabelecimento.segmento }}</div>
-      <div class="col-xs-4">{{ estabelecimento.grupo ? estabelecimento.grupo : '-' }}</div>
     </div>
     <app-collapse-content #collapseContent reverseContent="true">
       <div class="title">
@@ -61,64 +69,74 @@
         </div>
       </div>
       <div class="content">
+        <div class="row margin-top">
+          <div class="col-xs-12">
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong>Número ECs no Grupo:</strong>
+            </div>
+            {{ estabelecimento.numeroECsGrupo }}
+          </div>
+        </div>
         <div class="row">
+          <div class="col-xs-5 text-secondary">
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong>Ramo: </strong>
+            </div>
+            {{ estabelecimento.ramo }}
+          </div>
+          <div class="col-xs-7 text-secondary">
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong>Tipo: </strong>
+            </div>
+            {{ estabelecimento.tipo }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-secondary">
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong>Sub-ramo: </strong>
+            </div>
+            {{ estabelecimento.subRamo }}
+          </div>
+        </div>
+        <div class="row margin-top">
           <div class="col-xs-8">
-            <strong class="dados-cadastrais__titulo panel-card__title">Correntista</strong>
+            <strong class="dados-cadastrais__titulo panel-card__title">Correntista:</strong>
           </div>
           <div class="col-xs-4">
-            <strong class="dados-cadastrais__titulo panel-card__title">Agência</strong>
+            <strong class="dados-cadastrais__titulo panel-card__title">Agência:</strong>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-8">{{ estabelecimento.correntista ? 'Sim' : 'Não' }}</div>
           <div class="col-xs-4">{{ estabelecimento.agencia ? estabelecimento.agencia : '-' }}</div>
         </div>
-        <div class="row">
-          <div class="col-xs-8">
-            <strong class="dados-cadastrais__titulo panel-card__title">Número ECs no Grupo</strong>
-          </div>
-          <div class="col-xs-4">
-            <strong class="dados-cadastrais__titulo panel-card__title">Regional</strong>
+        <div class="row margin-top">
+          <div class="col-xs-12">
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong >Regional:</strong>
+            </div>
+            {{ estabelecimento.regional }}
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-8">{{ estabelecimento.numeroECsGrupo }}</div>
-          <div class="col-xs-4">{{ estabelecimento.regional }}</div>
-        </div>
-        <div class="row">
+        <div class="row margin-top">
           <div class="col-xs-5" *ngIf="estabelecimento?.telefones.length > 0">
             <div>
-              <strong class="dados-cadastrais__titulo panel-card__title">Telefones</strong>
+              <strong class="dados-cadastrais__titulo panel-card__title">Telefones:</strong>
             </div>
             <div *ngFor="let telefone of estabelecimento.telefones">
               {{ telefone.numero }}
             </div>
           </div>
           <div class="col-xs-7">
-            <div>
-              <strong class="dados-cadastrais__titulo panel-card__title">Data credenciamento</strong>
+            <div class="dados-cadastrais__titulo panel-card__title">
+              <strong>Data credenciamento</strong>
             </div>
-            <div>{{ estabelecimento.dataCredenciamento|date:"dd/MM/yyyy" }}</div>
-            <div class="padding-top">
-              <strong class="dados-cadastrais__titulo panel-card__title">E-mail</strong>
+            {{ estabelecimento.dataCredenciamento|date:"dd/MM/yyyy" }}
+            <div class="padding-top dados-cadastrais__titulo panel-card__title">
+              <strong>E-mail</strong>
             </div>
-            <div>{{ estabelecimento.emailCadastrado }}</div>
-          </div>
-        </div>
-        <div class="row margin-top">
-          <div class="col-xs-5 text-secondary">
-            <strong class="dados-cadastrais__titulo panel-card__title">Ramo: </strong>
-            {{ estabelecimento.ramo }}
-          </div>
-          <div class="col-xs-7 text-secondary">
-            <strong class="dados-cadastrais__titulo panel-card__title">Sub-ramo: </strong>
-            {{ estabelecimento.subRamo }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 text-secondary">
-            <strong class="dados-cadastrais__titulo panel-card__title">Tipo: </strong>
-            {{ estabelecimento.tipo }}
+            {{ estabelecimento.emailCadastrado }}
           </div>
         </div>
         <div class="row margin-top dados-cadastrais__responsaveis-cabecalho">

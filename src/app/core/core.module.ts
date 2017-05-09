@@ -12,6 +12,7 @@ import { HttpService } from './http/http.service';
 import { CollapseContentComponent } from './collapse-content/collapse-content.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { FABComponent } from './fab/fab.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     HeaderComponent,
     CollapseContentComponent,
     AlertMessageComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    FABComponent
   ],
   declarations: [
     SidebarComponent,
@@ -33,7 +35,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     MenuComponent,
     CollapseContentComponent,
     AlertMessageComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    FABComponent
   ],
   providers: [
     SidebarService,

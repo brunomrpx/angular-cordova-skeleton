@@ -7,43 +7,7 @@
     </div>
   </div>
   <div class="panel-body">
-    <app-collapse-content *ngFor="let bandeira of estabelecimento.bandeiras">
-      <div class="title">
-        <div class="row bottom-dotted collapsable-panel__title">
-          <div class="col-xs-6">
-            <i class="fa fa-circle margin-right" [ngClass]="{ 'status--1': bandeira.status, 'status--2': !bandeira.status }"></i>
-            <strong>{{ bandeira.nome }}</strong>
-          </div>
-          <div class="col-xs-6 text-right">
-            <span class="faturamento__valor">R$ {{ estabelecimento.faturamentoTotal | number:'.0-0' }}</span>
-            <i class="fa fa-ellipsis-v text-secondary collapsable-panel__toggle"></i>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="collapsable-panel__content">
-          <div *ngFor="let periodo of bandeira.periodos">
-            <div class="row collapsable-panel__item">
-              <div class="col-xs-6">
-                <i class="text-capitalize">{{ periodo.dataInicio|date:"MMMM" }}</i>
-              </div>
-              <div class="col-xs-6 text-right faturamento__valor">R$ {{ periodo.valor | number:'.0-0' }}</div>
-            </div>
-          </div>
-          <div class="row header-divider">
-            <div class="col-xs-12">Transações</div>
-          </div>
-          <div *ngFor="let periodo of bandeira.periodos">
-            <div class="row collapsable-panel__item">
-              <div class="col-xs-6">
-                <i class="text-capitalize">{{ periodo.dataInicio|date:"MMMM" }}</i>
-              </div>
-              <div class="col-xs-6 text-right">{{ periodo.qtdTransacoes }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </app-collapse-content>
+    <app-listagem-periodos [valoresPorPeriodo]="estabelecimento.bandeiras"></app-listagem-periodos>
   </div>
   <div class="panel-footer">
     <div class="row header-divider header-divider--2">

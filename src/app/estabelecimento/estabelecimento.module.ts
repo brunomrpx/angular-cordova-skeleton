@@ -8,6 +8,7 @@ import { MenuComponent } from '../core/menu/menu.component';
 import { HeaderComponent } from '../core/header/header.component';
 
 import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 import { EstabelecimentoListaComponent } from './estabelecimento-lista/estabelecimento-lista.component';
 import { EstabelecimentoDetalhesComponent } from './estabelecimento-detalhes/estabelecimento-detalhes.component';
 import { EstabelecimentoFiltrosComponent } from './estabelecimento-filtros/estabelecimento-filtros.component';
@@ -22,6 +23,7 @@ import { TaxasVigentesComponent } from './estabelecimento-detalhes/taxas-vigente
 import { AntecipacaoAutomaticaComponent } from './estabelecimento-detalhes/antecipacao-automatica/antecipacao-automatica.component';
 import { UtilizaAppComponent } from './estabelecimento-detalhes/utiliza-app/utiliza-app.component';
 import { RecargaHabilitadaComponent } from './estabelecimento-detalhes/recarga-habilitada/recarga-habilitada.component';
+import { TravasComponent } from './estabelecimento-detalhes/travas/travas.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
@@ -69,7 +72,8 @@ const routes: Routes = [
     TaxasVigentesComponent,
     AntecipacaoAutomaticaComponent,
     UtilizaAppComponent,
-    RecargaHabilitadaComponent
+    RecargaHabilitadaComponent,
+    TravasComponent
   ],
   providers: [
     EstabelecimentoService,

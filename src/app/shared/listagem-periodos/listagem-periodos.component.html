@@ -1,0 +1,33 @@
+<app-collapse-content *ngFor="let valorPorPeriodo of valoresPorPeriodo" [canCollapse]="valorPorPeriodo.faturamentoTotal > 0">
+  <div class="title">
+    <div class="row bottom-dotted collapsable-panel__title" [class.content-muted]="valorPorPeriodo.faturamentoTotal <= 0">
+      <div class="col-xs-6">
+        <i class="fa fa-circle margin-right" [ngClass]="{ 'status--1': valorPorPeriodo.status, 'status--2': !valorPorPeriodo.status }"></i>
+        <strong>{{ valorPorPeriodo.nome }}</strong>
+      </div>
+      <div class="col-xs-6 text-right">
+        <span class="faturamento__valor">R$ {{ valorPorPeriodo.faturamentoTotal | number:'.0-0' }}</span>
+        <i class="fa fa-ellipsis-v text-secondary collapsable-panel__toggle"></i>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="collapsable-panel__content">
+      <div class="row collapsable-panel__item" *ngFor="let periodo of valorPorPeriodo.periodos">
+        <div class="col-xs-6">
+          <i class="text-capitalize">{{ periodo.dataInicio | date:'MMMM' }}</i>
+        </div>
+        <div class="col-xs-6 text-right faturamento__valor">R$ {{ periodo.valor | number:'.0-0' }}</div>
+      </div>
+      <div class="row header-divider">
+        <div class="col-xs-12">Transações</div>
+      </div>
+      <div class="row collapsable-panel__item" *ngFor="let periodo of valorPorPeriodo.periodos">
+        <div class="col-xs-6">
+          <i class="text-capitalize">{{ periodo.dataInicio | date:'MMMM' }}</i>
+        </div>
+        <div class="col-xs-6 text-right">{{ periodo.qtdTransacoes }}</div>
+      </div>
+    </div>
+  </div>
+</app-collapse-content>

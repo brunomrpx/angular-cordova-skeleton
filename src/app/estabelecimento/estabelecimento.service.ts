@@ -20,7 +20,7 @@ export interface Periodo {
   qtdTransacoes: number;
 }
 
-export interface Bandeira {
+export interface ValorPorPeriodo {
   nome: string;
   status: boolean;
   faturamentoTotal: number;
@@ -38,14 +38,6 @@ export interface CanalFaturamento {
   nome: string;
   qtdTransacoes: number;
   valor: number;
-}
-
-export interface Recarga {
-  nome: string;
-  status: boolean;
-  faturamentoTotal: number;
-  qtdTransacoesTotal: number;
-  periodos: Periodo[];
 }
 
 export interface Estabelecimento {
@@ -87,7 +79,8 @@ export interface Estabelecimento {
   ticketMedio: number;
   faturamentoTotal: number;
   qtdTransacoesTotal: number;
-  bandeiras: Bandeira[];
+  bandeiras: ValorPorPeriodo[];
+  recargas: ValorPorPeriodo[];
   sow: number;
   sowtermo: number;
   faturamentoTermoCompromisso: number;
