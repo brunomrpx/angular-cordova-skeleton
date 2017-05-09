@@ -18,11 +18,11 @@ import { fadeOut, fadeIn } from '../animations';
 })
 export class FABComponent {
   @ViewChild('fab') fab: ElementRef;
+  @Input() class: string;
 
   private showButton = true;
   private lastScrollTop = 0;
   private pageWrapper: any;
-  private checkingButton = false;
 
   constructor(private sidebarComponent: SidebarComponent) {
     this.pageWrapper = this.sidebarComponent.pageWrapper.nativeElement;
@@ -30,17 +30,9 @@ export class FABComponent {
 
   @HostListener('body:scroll', ['$event'])
   public onBodyScroll() {
-    if (this.checkingButton) {
-      return;
-    }
-
-    this.checkingButton = true;
     const box = this.pageWrapper.getBoundingClientRect();
 
-    setTimeout(() => {
-      this.showButton = box.top > this.lastScrollTop;
-      this.lastScrollTop = box.top;
-      this.checkingButton = false;
-    });
+    this.showButton = box.top > this.lastScrollTop;
+    this.lastScrollTop = box.top;
   }
 }

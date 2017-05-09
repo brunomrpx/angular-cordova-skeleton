@@ -67,6 +67,6 @@ export class VisitaEstabelecimentoResumoComponent implements OnDestroy {
 
     this.visitaEstabelecimentoService.questionario.next(questionario);
 
-    // this.router.navigate(['../questionario'], { relativeTo: this.activatedRoute.parent });
+    this.router.navigate(['../questionario'], { relativeTo: this.activatedRoute.parent });
   }
 }
