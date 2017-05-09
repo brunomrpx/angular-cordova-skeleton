@@ -8,8 +8,13 @@ import { Component, Input } from '@angular/core';
 export class CollapseContentComponent {
   @Input() private contentOpened = false;
   @Input() private reverseContent = false;
+  @Input() private canCollapse = true;
 
   private toggleContent() {
+    if (!this.canCollapse) {
+      return;
+    }
+
     this.contentOpened = !this.contentOpened;
   }
 }

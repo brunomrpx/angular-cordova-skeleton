@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
-import { SidebarService } from '../../../shared/sidebar/sidebar.service';
-import { HeaderComponent } from '../../../shared/header/header.component';
+import { SidebarService } from '../../../core/sidebar/sidebar.service';
+import { HeaderComponent } from '../../../core/header/header.component';
 
 @Component({
   selector: 'app-estabelecimento-lista-header',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { environment } from '../../environments/environment';
-import { isCordovaApp } from '../shared/cordova';
+import { isCordovaApp } from '../core/cordova';
 
 declare const window;
 

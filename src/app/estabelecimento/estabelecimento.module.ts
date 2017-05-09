@@ -3,11 +3,11 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
-import { MenuComponent } from '../shared/menu/menu.component';
-import { HeaderComponent } from '../shared/header/header.component';
+import { SidebarComponent } from '../core/sidebar/sidebar.component';
+import { MenuComponent } from '../core/menu/menu.component';
+import { HeaderComponent } from '../core/header/header.component';
 
-import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 import { EstabelecimentoListaComponent } from './estabelecimento-lista/estabelecimento-lista.component';
 import { EstabelecimentoDetalhesComponent } from './estabelecimento-detalhes/estabelecimento-detalhes.component';
 import { EstabelecimentoFiltrosComponent } from './estabelecimento-filtros/estabelecimento-filtros.component';
@@ -54,7 +54,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

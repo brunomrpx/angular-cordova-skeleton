@@ -8,7 +8,7 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
-import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 import { AuthenticationModule } from '../app/authentication/authentication.module';
 import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module';
 import { SincrionizacaoModule } from './sincronizacao/sincronizacao.module';
@@ -28,7 +28,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    SharedModule,
+    CoreModule,
     AuthenticationModule,
     EstabelecimentoModule,
     SincrionizacaoModule,

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Headers } from '@angular/http';
 
-import { HeaderService } from './shared/header/header.service';
+import { HeaderService } from './core/header/header.service';
 import { KeycloakService } from './authentication/keycloak.service';
 import { SessionService, Session } from './authentication/session.service';
 import { SincronizacaoService } from './sincronizacao/sincronizacao.service';
-import { HttpServiceConfig } from './shared/http/http.service';
+import { HttpServiceConfig } from './core/http/http.service';
 import { useKeycloak } from '../environments/environment';
-import { isCordovaApp } from './shared/cordova';
+import { isCordovaApp } from './core/cordova';
 
 declare const window;
 

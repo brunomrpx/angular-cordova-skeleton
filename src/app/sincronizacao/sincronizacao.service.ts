@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import * as localForage from 'localforage';
 
-import { HttpServiceConfig, HttpService } from '../shared/http/http.service';
+import { HttpServiceConfig, HttpService } from '../core/http/http.service';
 import { EstabelecimentoService, Estabelecimento } from '../estabelecimento/estabelecimento.service';
 import { API_BASE_URL } from '../app.constant';
 import { SINCRONIZACAO_STORAGE_ID } from './sincronizacao.constant';

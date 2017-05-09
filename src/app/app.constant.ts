@@ -1,4 +1,4 @@
-import { MenuItem } from './shared/menu/menu.service';
+import { MenuItem } from './core/menu/menu.service';
 
 export const API_BASE_URL = 'http://192.168.0.170:8000/api';
 

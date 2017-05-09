@@ -5,7 +5,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment, useKeycloak } from './environments/environment';
 import { bootstrapWithKeycloak } from './app/authentication/keycloak.service';
-import { bindCordovaEvents, isCordovaApp } from './app/shared/cordova';
+import { bindCordovaEvents, isCordovaApp } from './app/core/cordova';
 
 if (environment.production) {
   enableProdMode();

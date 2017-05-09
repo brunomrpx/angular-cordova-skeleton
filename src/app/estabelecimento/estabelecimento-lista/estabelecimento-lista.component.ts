@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-import { SidebarService } from '../../shared/sidebar/sidebar.service';
-import { HttpService } from '../../shared/http/http.service';
+import { SidebarService } from '../../core/sidebar/sidebar.service';
+import { HttpService } from '../../core/http/http.service';
 import { EstabelecimentoService, Estabelecimento } from '../estabelecimento.service';
 import { EstabelecimentoFiltrosService, Filtros, Filtro, FiltroStatus } from '../estabelecimento-filtros/estabelecimento-filtros.service';
 

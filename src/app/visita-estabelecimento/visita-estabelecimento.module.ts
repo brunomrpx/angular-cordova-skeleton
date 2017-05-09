@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
-import { HeaderComponent } from '../shared/header/header.component';
+import { SidebarComponent } from '../core/sidebar/sidebar.component';
+import { HeaderComponent } from '../core/header/header.component';
 
-import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 import { VisitaEstabelecimentoResumoComponent } from './visita-estabelecimento-resumo/visita-estabelecimento-resumo.component';
 import { VisitaEstabelecimentoService } from './visita-estabelecimento.service';
 import { VisitaEstabelecimentoQuestionarioComponent } from './visita-estabelecimento-questionario/visita-estabelecimento-questionario.component';
@@ -41,7 +41,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    SharedModule
+    CoreModule
   ],
   declarations: [
     VisitaEstabelecimentoResumoComponent,

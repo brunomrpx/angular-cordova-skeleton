@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
-import { HeaderService } from '../../shared/header/header.service';
+import { HeaderService } from '../../core/header/header.service';
 import { Estabelecimento, EstabelecimentoService } from '../../estabelecimento/estabelecimento.service';
 
 @Component({
